@@ -13,12 +13,22 @@
   <url>
     <loc>https://cateringfamilyjakarta.vercel.app/about</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cateringfamilyjakarta.vercel.app/contact</loc>
+    <loc>https://cateringfamilyjakarta.vercel.app/cart</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cateringfamilyjakarta.vercel.app/orders</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://cateringfamilyjakarta.vercel.app/track</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://cateringfamilyjakarta.vercel.app/login</loc>
