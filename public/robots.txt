@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cateringfamilyjakarta.vercel.app/sitemap.xml
