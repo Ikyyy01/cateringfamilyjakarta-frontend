@@ -1,11 +1,11 @@
 <template>
-  <footer class="bg-gray-900 text-gray-400 pt-14 pb-6 mt-16">
+  <footer class="bg-gray-900 text-gray-400 pt-12 sm:pt-14 pb-6 mt-12 sm:mt-16">
     <div class="max-w-6xl mx-auto px-4">
-      <div class="grid md:grid-cols-4 gap-10 mb-10">
+      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 mb-10">
         <!-- Brand -->
-        <div class="md:col-span-2">
+        <div class="sm:col-span-2">
           <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center">
+            <div class="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center flex-shrink-0">
               <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
               </svg>
@@ -62,7 +62,7 @@
               <svg class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
               </svg>
-              <span>info@cateringfamilyjakarta.com</span>
+              <span class="break-all">info@cateringfamilyjakarta.com</span>
             </div>
             <div class="flex items-start gap-2.5">
               <svg class="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -76,7 +76,7 @@
       </div>
 
       <!-- Bottom -->
-      <div class="border-t border-white/10 pt-5 flex justify-center text-xs text-gray-500">
+      <div class="border-t border-white/10 pt-5 flex justify-center text-xs text-gray-500 text-center">
         <p>© {{ new Date().getFullYear() }} Catering Family Jakarta. Semua hak dilindungi.</p>
       </div>
     </div>
