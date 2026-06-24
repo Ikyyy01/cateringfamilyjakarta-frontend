@@ -92,28 +92,6 @@
       </div>
     </section>
 
-    <!-- Tim (opsional – project) -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-5xl mx-auto px-4">
-        <div class="text-center mb-12">
-          <span class="text-xs font-bold uppercase tracking-widest text-red-500 mb-3 block">Proyek Akademik</span>
-          <h2 class="text-3xl font-bold text-gray-900">Informasi Proyek</h2>
-          <p class="text-gray-500 mt-3 max-w-xl mx-auto text-sm leading-relaxed">
-            Aplikasi ini dikembangkan sebagai Proyek Industri (PI) di Universitas Gunadarma,
-            mengimplementasikan sistem pemesanan catering berbasis web menggunakan Laravel dan Vue 3.
-          </p>
-        </div>
-        <div class="grid sm:grid-cols-3 gap-5">
-          <div v-for="tech in techStack" :key="tech.name"
-            class="bg-white rounded-2xl p-5 border border-gray-100 text-center hover:border-gray-200 hover:shadow-sm transition">
-            <div class="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center mx-auto mb-3" v-html="tech.icon"></div>
-            <div class="font-semibold text-gray-800 text-sm">{{ tech.name }}</div>
-            <div class="text-xs text-gray-400 mt-1">{{ tech.desc }}</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- CTA -->
     <section class="py-20 bg-red-600 text-white">
       <div class="max-w-3xl mx-auto px-4 text-center">
@@ -172,14 +150,5 @@ const services = [
   { icon: svcIconAqq,  title: 'Paket Aqiqah',            desc: 'Layanan aqiqah lengkap dengan pilihan menu kambing/sapi yang diolah secara higienis dan dikemas dengan rapi.' },
   { icon: svcIconPest, title: 'Catering Pesta & Event',  desc: 'Layanan catering untuk pernikahan, ulang tahun, dan berbagai acara besar dengan pilihan menu yang beragam.' },
   { icon: svcIconCust, title: 'Menu Custom',              desc: 'Tidak menemukan menu yang cocok? Kami menerima pesanan menu custom sesuai kebutuhan dan selera Anda.' },
-]
-
-const techStack = [
-  { name: 'Laravel 11',   desc: 'Backend & REST API', icon: `<svg class="w-5 h-5 text-red-600" fill="currentColor" viewBox="0 0 24 24"><path d="M23.642 5.43a.364.364 0 01.014.1v5.149c0 .135-.073.26-.189.326l-4.323 2.49v4.934a.378.378 0 01-.188.326L9.93 23.949a.316.316 0 01-.066.027.29.29 0 01-.068.009.299.299 0 01-.067-.009.408.408 0 01-.068-.027L.533 18.755a.376.376 0 01-.189-.326V2.974c0-.035.006-.07.014-.104a.373.373 0 01.014-.073c.006-.014.014-.026.022-.04.013-.016.026-.033.04-.048l.04-.02.04-.026L5.044.534a.375.375 0 01.376 0L9.93 3.196h.002c.012.007.025.014.038.023l.04.02.04.047c.008.014.016.027.022.04.008.022.012.046.014.073v9.823l3.759-2.164V5.53c0-.035.005-.069.014-.104.006-.025.014-.05.022-.073.007-.014.015-.026.024-.04.012-.016.025-.033.04-.047l.04-.02.038-.026 4.512-2.663a.375.375 0 01.376 0l4.512 2.663.04.026.04.02c.014.014.028.031.04.047.01.014.017.027.024.04.008.023.016.048.021.073zm-.74 5.019V6.444l-1.572.906-2.187 1.258v3.999zm-4.511 7.75v-4.006l-2.153 1.232-6.133 3.51v4.044zM1.095 3.474v15.008l8.285 4.754v-4.044l-4.32-2.453-.002-.003-.002-.003c-.014-.01-.025-.021-.037-.031-.011-.01-.024-.02-.034-.032l-.003-.004c-.01-.011-.017-.024-.025-.037-.008-.012-.016-.024-.021-.037l-.003-.005c-.007-.014-.01-.028-.014-.043-.005-.014-.01-.028-.012-.043v-.005c-.003-.016-.003-.031-.003-.047V5.994L4.93 4.736zM5.424 1.16L1.713 3.295l3.711 2.136 3.712-2.136zm.376 7.602v-4.26L1.282 7.02v4.006l4.518-2.264zM9.552 3.675L5.841 5.81v4.26l4.511-2.264V3.675zm9.021 7.748V7.424L16.386 6.166l-2.188-1.258v4.006l2.187 1.258zm-4.51-8.243l-3.712 2.135 3.712 2.136 3.71-2.136zm-.377 4.927l-2.188-1.259-1.57-.907v3.999l2.187 1.258 1.571.906z"/></svg>` },
-  { name: 'Vue 3',        desc: 'Frontend Framework', icon: `<svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M24 1.61h-9.94L12 5.16 9.94 1.61H0l12 20.78zM2.17 3.58H5.9l6.1 10.55L18.1 3.58h3.73L12 19.44z"/></svg>` },
-  { name: 'MySQL',        desc: 'Database',           icon: `<svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12c0 1.657-4.03 3-9 3S3 13.657 3 12"/><path stroke-linecap="round" stroke-linejoin="round" d="M3 5v14c0 1.657 4.03 3 9 3s9-1.343 9-3V5"/></svg>` },
-  { name: 'Tailwind CSS', desc: 'UI Framework',      icon: `<svg class="w-5 h-5 text-cyan-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg>` },
-  { name: 'Vite',         desc: 'Build Tool',        icon: `<svg class="w-5 h-5 text-purple-500" fill="currentColor" viewBox="0 0 24 24"><path d="M24 3.563L13.18 23.637c-.22.397-.776.397-.996 0L1.315 3.563a.573.573 0 01.529-.845l11.07 1.315a.572.572 0 00.128 0l10.83-1.315a.573.573 0 01.528.845z"/></svg>` },
-  { name: 'Axios',        desc: 'HTTP Client',       icon: `<svg class="w-5 h-5 text-indigo-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>` },
 ]
 </script>
