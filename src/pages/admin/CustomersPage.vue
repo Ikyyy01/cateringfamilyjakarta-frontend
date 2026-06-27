@@ -9,7 +9,7 @@
 
     <!-- Filter -->
     <div class="bg-white rounded-2xl shadow-sm p-4 mb-5 flex gap-3">
-      <input v-model="search" @keyup.enter="fetchCustomers" type="text" placeholder="🔍 Cari nama, email, HP..."
+      <input v-model="search" @keyup.enter="fetchCustomers" type="text" placeholder=" Cari nama, email, HP..."
         class="flex-1 border-2 border-gray-100 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-red-300 transition" />
       <button @click="fetchCustomers" class="bg-red-600 text-white px-5 py-2 rounded-xl text-sm font-bold hover:bg-red-700 transition">Cari</button>
     </div>
@@ -20,7 +20,7 @@
         <div v-for="i in 6" :key="i" class="h-14 bg-gray-100 rounded-xl animate-pulse"></div>
       </div>
       <div v-else-if="customers.length === 0" class="text-center py-16 text-gray-300">
-        <div class="text-4xl mb-3">👥</div>
+        <div class="text-4xl mb-3"></div>
         <p class="font-semibold text-gray-400">Tidak ada pelanggan ditemukan</p>
       </div>
       <div v-else class="overflow-x-auto">
@@ -58,7 +58,7 @@
               <td class="px-5 py-3.5 text-right flex items-center justify-end gap-2">
                 <RouterLink :to="`/admin/customers/${c.id}`" class="text-xs border-2 border-gray-200 text-gray-500 px-3 py-1.5 rounded-xl font-bold hover:border-red-300 hover:text-red-500 transition">Detail →</RouterLink>
                 <button @click="handleDelete(c)" :disabled="(c.orders_count ?? 0) > 0"
-                  class="text-xs border-2 border-red-100 text-red-400 px-3 py-1.5 rounded-xl font-bold hover:bg-red-50 transition disabled:opacity-30 disabled:cursor-not-allowed">🗑️</button>
+                  class="text-xs border-2 border-red-100 text-red-400 px-3 py-1.5 rounded-xl font-bold hover:bg-red-50 transition disabled:opacity-30 disabled:cursor-not-allowed">️</button>
               </td>
             </tr>
           </tbody>

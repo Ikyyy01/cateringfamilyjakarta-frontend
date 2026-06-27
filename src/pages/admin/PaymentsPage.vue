@@ -25,7 +25,7 @@
 
     <div v-if="loading" class="text-center py-16 text-gray-400">Memuat...</div>
     <div v-else-if="payments.length === 0" class="text-center py-16 text-gray-300">
-      <div class="text-4xl mb-3">💳</div>
+      <div class="text-4xl mb-3"></div>
       <p class="font-semibold">Tidak ada data pembayaran</p>
     </div>
 
@@ -44,12 +44,12 @@
                   @error="onImgError($event)"
                 />
                 <p class="text-center text-xs text-blue-500 mt-2 font-semibold group-hover:underline">
-                  🔍 Klik untuk perbesar
+                   Klik untuk perbesar
                 </p>
               </a>
             </template>
             <div v-else class="text-center text-gray-300">
-              <div class="text-4xl mb-2">🖼️</div>
+              <div class="text-4xl mb-2">️</div>
               <p class="text-xs font-semibold">Belum ada bukti</p>
             </div>
           </div>
@@ -88,24 +88,24 @@
               <template v-if="p.status === 'pending_verification'">
                 <button @click="handleVerify(p.id)"
                   class="inline-flex items-center gap-1.5 bg-green-600 text-white px-5 py-2 rounded-xl text-sm font-bold hover:bg-green-700 transition shadow-sm">
-                  ✅ Verifikasi — Tandai Lunas
+                   Verifikasi — Tandai Lunas
                 </button>
                 <button @click="handleReject(p.id)"
                   class="inline-flex items-center gap-1.5 bg-red-500 text-white px-5 py-2 rounded-xl text-sm font-bold hover:bg-red-600 transition shadow-sm">
-                  ❌ Tolak Pembayaran
+                   Tolak Pembayaran
                 </button>
               </template>
               <span v-else-if="p.status === 'paid'"
                 class="inline-flex items-center gap-1.5 bg-green-50 border border-green-200 text-green-700 px-4 py-2 rounded-xl text-sm font-bold">
-                ✅ Pembayaran Terverifikasi
+                 Pembayaran Terverifikasi
               </span>
               <span v-else-if="p.status === 'failed'"
                 class="inline-flex items-center gap-1.5 bg-red-50 border border-red-200 text-red-600 px-4 py-2 rounded-xl text-sm font-bold">
-                ❌ Pembayaran Ditolak
+                 Pembayaran Ditolak
               </span>
               <a v-if="p.proof_image" :href="storageUrl(p.proof_image)" target="_blank"
                 class="inline-flex items-center gap-1.5 border-2 border-gray-200 text-gray-500 px-4 py-2 rounded-xl text-sm font-bold hover:border-blue-300 hover:text-blue-500 transition">
-                🖼️ Buka Fullscreen
+                ️ Buka Fullscreen
               </a>
             </div>
           </div>

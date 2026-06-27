@@ -2,7 +2,7 @@
   <div class="max-w-2xl mx-auto px-4 py-10">
     <!-- Header -->
     <div class="text-center mb-8">
-      <div class="text-5xl mb-4" style="filter:drop-shadow(0 4px 16px rgba(192,57,43,.25))">🧾</div>
+      <div class="text-5xl mb-4" style="filter:drop-shadow(0 4px 16px rgba(192,57,43,.25))"></div>
       <h1 class="text-2xl font-extrabold text-gray-800 mb-1">Selesaikan Pembayaran</h1>
       <p v-if="payment?.order_number" class="text-gray-400">
         Pesanan <strong class="text-red-600">#{{ payment.order_number }}</strong>
@@ -10,14 +10,14 @@
     </div>
 
     <div v-if="loading" class="text-center text-gray-400 py-20">
-      <div class="text-4xl opacity-30 animate-pulse mb-3">⏳</div>
+      <div class="text-4xl opacity-30 animate-pulse mb-3"></div>
       Memuat data pembayaran...
     </div>
 
     <!-- SUDAH LUNAS -->
     <div v-else-if="payment?.payment?.status === 'paid'"
       class="bg-white rounded-3xl shadow-md text-center p-12">
-      <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-4xl mx-auto mb-5">✅</div>
+      <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center text-4xl mx-auto mb-5"></div>
       <h2 class="text-xl font-extrabold mb-2 text-gray-800">Pembayaran Lunas!</h2>
       <p class="text-gray-400 leading-relaxed mb-6">
         Terima kasih! Pesanan Anda sedang diproses oleh tim kami.<br>
@@ -30,14 +30,14 @@
       </div>
       <RouterLink to="/track"
         class="inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-orange-500 text-white px-7 py-3 rounded-full font-bold shadow hover:-translate-y-0.5 transition">
-        🔍 Lacak Pesanan
+         Lacak Pesanan
       </RouterLink>
     </div>
 
     <!-- MENUNGGU VERIFIKASI -->
     <div v-else-if="payment?.payment?.status === 'pending_verification'"
       class="bg-white rounded-3xl shadow-md text-center p-12">
-      <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center text-4xl mx-auto mb-5">⏳</div>
+      <div class="w-20 h-20 bg-yellow-100 rounded-full flex items-center justify-center text-4xl mx-auto mb-5"></div>
       <h2 class="text-xl font-extrabold mb-2 text-gray-800">Bukti Sedang Diverifikasi</h2>
       <p class="text-gray-400 leading-relaxed mb-6">
         Tim kami akan memverifikasi pembayaran Anda dalam <strong>1×24 jam</strong>.<br>
@@ -49,7 +49,7 @@
       </div>
       <RouterLink to="/track"
         class="inline-flex items-center gap-2 border-2 border-red-500 text-red-600 px-7 py-3 rounded-full font-bold hover:bg-red-50 transition">
-        🔍 Pantau Status Pesanan
+         Pantau Status Pesanan
       </RouterLink>
     </div>
 
@@ -66,7 +66,7 @@
 
       <!-- Kode Pesanan -->
       <div class="bg-white rounded-3xl shadow-md p-5 text-center">
-        <p class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-wider">📌 Simpan Kode Ini</p>
+        <p class="text-xs text-gray-400 mb-2 font-semibold uppercase tracking-wider"> Simpan Kode Ini</p>
         <p class="text-2xl font-extrabold font-mono text-red-600 mb-1">{{ payment?.order_number }}</p>
         <p class="text-xs text-gray-400">Gunakan kode ini untuk melacak status pesanan Anda di halaman
           <RouterLink to="/track" class="text-red-500 hover:underline font-semibold">Lacak Pesanan</RouterLink>
@@ -76,7 +76,7 @@
       <!-- QRIS -->
       <div class="bg-white rounded-3xl shadow-md overflow-hidden">
         <div class="flex items-center gap-3 px-6 py-4 border-b">
-          <div class="w-9 h-9 bg-red-100 rounded-xl flex items-center justify-center text-lg">📱</div>
+          <div class="w-9 h-9 bg-red-100 rounded-xl flex items-center justify-center text-lg"></div>
           <div>
             <p class="font-extrabold text-gray-800">Bayar via QRIS</p>
             <p class="text-xs text-gray-400">Scan QR dengan aplikasi dompet digital apapun</p>
@@ -102,7 +102,7 @@
 
               <!-- Placeholder — QRIS belum diupload admin -->
               <div v-else class="flex flex-col items-center justify-center w-full h-full gap-3 px-4">
-                <div class="text-4xl opacity-20">📲</div>
+                <div class="text-4xl opacity-20"></div>
                 <p class="text-xs text-gray-400 text-center leading-relaxed">
                   QRIS belum tersedia.<br>Hubungi admin untuk info pembayaran.
                 </p>
@@ -119,13 +119,13 @@
               <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-base">🟢</div>GoPay
             </div>
             <div class="flex flex-col items-center gap-1.5">
-              <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-base">🔵</div>OVO
+              <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-base"></div>OVO
             </div>
             <div class="flex flex-col items-center gap-1.5">
               <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-base">🟠</div>Dana
             </div>
             <div class="flex flex-col items-center gap-1.5">
-              <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-base">💳</div>m-BCA
+              <div class="w-10 h-10 bg-gray-50 rounded-xl flex items-center justify-center text-base"></div>m-BCA
             </div>
           </div>
 
@@ -145,7 +145,7 @@
       <!-- Upload Bukti -->
       <div class="bg-white rounded-3xl shadow-md overflow-hidden">
         <div class="flex items-center gap-3 px-6 py-4 border-b">
-          <div class="w-9 h-9 bg-orange-100 rounded-xl flex items-center justify-center text-lg">📤</div>
+          <div class="w-9 h-9 bg-orange-100 rounded-xl flex items-center justify-center text-lg"></div>
           <div>
             <p class="font-extrabold text-gray-800">Upload Bukti Pembayaran</p>
             <p class="text-xs text-gray-400">Screenshot / foto bukti transfer QRIS</p>
@@ -165,7 +165,7 @@
           <div v-if="!preview"
             @click="$refs.fileInput.click()"
             class="border-2 border-dashed border-gray-200 rounded-2xl p-8 text-center cursor-pointer hover:border-red-300 hover:bg-red-50/30 transition">
-            <div class="text-4xl opacity-30 mb-3">🖼️</div>
+            <div class="text-4xl opacity-30 mb-3">️</div>
             <div class="font-bold text-sm text-gray-500 mb-1">Klik untuk pilih foto</div>
             <div class="text-xs text-gray-400">JPG, PNG — Maks. 2MB</div>
           </div>
@@ -183,7 +183,7 @@
               </svg>
               Mengunggah...
             </span>
-            <span v-else>📤 Kirim Bukti Pembayaran</span>
+            <span v-else> Kirim Bukti Pembayaran</span>
           </button>
         </div>
       </div>
@@ -284,7 +284,7 @@ async function handleUpload() {
     fd.append('proof_image', file.value)
     fd.append('method', 'qris')
     await uploadPayment(route.params.orderId, fd)
-    success.value = '✅ Bukti pembayaran berhasil dikirim! Menunggu verifikasi admin.'
+    success.value = ' Bukti pembayaran berhasil dikirim! Menunggu verifikasi admin.'
     file.value    = null
     preview.value = null
     // Reload data pembayaran

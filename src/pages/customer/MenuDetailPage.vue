@@ -11,7 +11,7 @@
 
     <div v-if="loading" class="text-center text-gray-400 py-20">Memuat...</div>
     <div v-else-if="!menu" class="text-center py-20 text-gray-400">
-      <div class="text-5xl mb-4 opacity-40">🍽️</div>
+      <div class="text-5xl mb-4 opacity-40">️</div>
       <p>Menu tidak ditemukan.</p>
       <RouterLink to="/menu" class="text-red-500 hover:underline mt-2 inline-block">← Kembali ke Menu</RouterLink>
     </div>
@@ -23,7 +23,7 @@
           class="w-full rounded-3xl shadow-md object-cover max-h-72 sm:max-h-96" />
         <div v-else class="w-full h-64 sm:h-80 rounded-3xl flex items-center justify-center relative overflow-hidden"
           style="background: linear-gradient(135deg,#fff5f3,#fff0e8)">
-          <span class="text-7xl sm:text-8xl relative z-10" style="filter:drop-shadow(0 8px 24px rgba(0,0,0,.12))">🍱</span>
+          <span class="text-7xl sm:text-8xl relative z-10" style="filter:drop-shadow(0 8px 24px rgba(0,0,0,.12))"></span>
         </div>
       </div>
 
@@ -63,14 +63,14 @@
 
         <button @click="addToCart"
           class="w-full bg-gradient-to-r from-red-600 to-orange-500 text-white py-3 sm:py-3.5 rounded-2xl font-bold text-sm sm:text-base hover:shadow-lg hover:-translate-y-0.5 transition mb-3">
-          🛒 Tambah ke Keranjang
+           Tambah ke Keranjang
         </button>
         <RouterLink to="/menu"
           class="block w-full text-center border-2 border-gray-200 text-gray-600 py-3 rounded-2xl font-semibold hover:border-red-300 hover:text-red-500 transition text-sm sm:text-base">
           ← Kembali ke Menu
         </RouterLink>
 
-        <p v-if="added" class="text-green-600 text-sm mt-3 font-semibold text-center">✓ Berhasil ditambahkan ke keranjang!</p>
+        <p v-if="added" class="text-green-600 text-sm mt-3 font-semibold text-center"> Berhasil ditambahkan ke keranjang!</p>
       </div>
     </div>
 

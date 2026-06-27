@@ -12,7 +12,7 @@
       <div class="bg-white rounded-2xl p-4 shadow-sm text-center">
         <p class="text-2xl font-black text-yellow-500">{{ stats.avg_rating || '—' }}</p>
         <div class="flex justify-center gap-0.5 my-1">
-          <span v-for="i in 5" :key="i" :class="i <= Math.round(stats.avg_rating) ? 'text-yellow-400' : 'text-gray-200'" class="text-sm">★</span>
+          <span v-for="i in 5" :key="i" :class="i <= Math.round(stats.avg_rating) ? 'text-yellow-400' : 'text-gray-200'" class="text-sm"></span>
         </div>
         <p class="text-xs text-gray-400">Rata-rata Rating</p>
       </div>
@@ -22,7 +22,7 @@
       </div>
       <div v-for="star in [5,4,3]" :key="star" class="hidden md:block bg-white rounded-2xl p-4 shadow-sm">
         <div class="flex items-center gap-2 mb-2">
-          <span class="text-yellow-400 text-sm">{{ '★'.repeat(star) }}</span>
+          <span class="text-yellow-400 text-sm">{{ ''.repeat(star) }}</span>
           <span class="text-xs text-gray-400 font-bold">{{ star }} bintang</span>
         </div>
         <div class="bg-gray-100 rounded-full h-2">
@@ -34,7 +34,7 @@
 
     <!-- Filter -->
     <div class="bg-white rounded-2xl shadow-sm p-4 mb-5 flex flex-wrap gap-3">
-      <input v-model="search" @keyup.enter="fetchReviews" type="text" placeholder="🔍 Cari nama atau komentar..."
+      <input v-model="search" @keyup.enter="fetchReviews" type="text" placeholder=" Cari nama atau komentar..."
         class="flex-1 min-w-[200px] border-2 border-gray-100 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-red-300 transition" />
       <select v-model="ratingFilter" @change="fetchReviews" class="border-2 border-gray-100 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-red-300 bg-white">
         <option value="">Semua Rating</option>
@@ -48,7 +48,7 @@
       <div v-for="i in 5" :key="i" class="bg-white rounded-2xl h-28 animate-pulse"></div>
     </div>
     <div v-else-if="reviews.length === 0" class="text-center py-16 bg-white rounded-2xl">
-      <div class="text-4xl mb-3">⭐</div>
+      <div class="text-4xl mb-3"></div>
       <p class="font-semibold text-gray-400">Belum ada review</p>
     </div>
     <div v-else class="space-y-3">
@@ -61,13 +61,13 @@
             <div>
               <p class="font-bold text-gray-800 text-sm">{{ r.user?.name || 'Pelanggan' }}</p>
               <div class="flex items-center gap-1 mt-0.5">
-                <span v-for="i in 5" :key="i" :class="i <= r.rating ? 'text-yellow-400' : 'text-gray-200'" class="text-sm">★</span>
+                <span v-for="i in 5" :key="i" :class="i <= r.rating ? 'text-yellow-400' : 'text-gray-200'" class="text-sm"></span>
                 <span class="text-xs text-gray-400 ml-1 font-mono">{{ r.order?.order_number }}</span>
               </div>
             </div>
             <div class="flex items-center gap-2 flex-shrink-0">
               <span class="text-xs text-gray-400">{{ formatDate(r.created_at) }}</span>
-              <button @click="handleDelete(r.id)" class="text-xs border-2 border-red-100 text-red-400 px-3 py-1.5 rounded-xl font-bold hover:bg-red-50 transition">🗑️ Hapus</button>
+              <button @click="handleDelete(r.id)" class="text-xs border-2 border-red-100 text-red-400 px-3 py-1.5 rounded-xl font-bold hover:bg-red-50 transition">️ Hapus</button>
             </div>
           </div>
           <p v-if="r.comment" class="text-sm text-gray-600 mt-2 leading-relaxed">{{ r.comment }}</p>

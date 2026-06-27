@@ -23,13 +23,13 @@
     <div v-if="loading" class="text-center text-gray-400 py-20 animate-pulse">Memuat pesanan...</div>
 
     <div v-else-if="filteredOrders.length === 0" class="bg-white rounded-3xl shadow-md text-center py-16 px-6 max-w-md mx-auto">
-      <div class="text-6xl opacity-40 mb-4">📋</div>
+      <div class="text-6xl opacity-40 mb-4"></div>
       <h5 class="text-xl font-extrabold text-gray-700 mb-2">
         {{ activeFilter ? 'Tidak ada pesanan ' + statusLabel(activeFilter) : 'Belum ada pesanan' }}
       </h5>
       <p class="text-gray-400 text-sm mb-6">Yuk, mulai pesan catering untuk acara Anda!</p>
       <RouterLink to="/menu" class="inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-orange-500 text-white px-7 py-3 rounded-full font-bold shadow">
-        🍱 Lihat Menu
+         Lihat Menu
       </RouterLink>
     </div>
 
@@ -38,7 +38,7 @@
         class="bg-white rounded-2xl shadow-sm border border-gray-50 overflow-hidden hover:shadow-md transition">
         <div class="flex flex-wrap items-center justify-between gap-4 px-5 py-4">
           <div class="flex items-center gap-4">
-            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-red-50 to-orange-50 flex items-center justify-center text-xl flex-shrink-0">🍱</div>
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-red-50 to-orange-50 flex items-center justify-center text-xl flex-shrink-0"></div>
             <div>
               <p class="font-black text-red-600 font-mono text-sm">{{ order.order_number }}</p>
               <p class="text-xs text-gray-400 mt-0.5">Dipesan {{ formatDate(order.created_at) }}</p>
@@ -65,7 +65,7 @@
           order.payment.status === 'paid' ? 'bg-green-50 border-green-100 text-green-700' :
           order.payment.status === 'pending_verification' ? 'bg-yellow-50 border-yellow-100 text-yellow-700' :
           'bg-gray-50 border-gray-100 text-gray-500']">
-          <span>💳</span>
+          <span></span>
           <span class="font-semibold">
             {{ order.payment.status === 'paid' ? 'Pembayaran dikonfirmasi' :
                order.payment.status === 'pending_verification' ? 'Bukti pembayaran sedang diverifikasi' :
@@ -89,12 +89,12 @@ const activeFilter = ref('')
 
 const statusFilters = [
   { value: '',           label: 'Semua' },
-  { value: 'pending',    label: '⏳ Menunggu' },
-  { value: 'confirmed',  label: '✅ Dikonfirmasi' },
-  { value: 'processing', label: '🔄 Diproses' },
-  { value: 'delivered',  label: '🚚 Dikirim' },
-  { value: 'completed',  label: '🎉 Selesai' },
-  { value: 'cancelled',  label: '❌ Dibatalkan' },
+  { value: 'pending',    label: ' Menunggu' },
+  { value: 'confirmed',  label: ' Dikonfirmasi' },
+  { value: 'processing', label: ' Diproses' },
+  { value: 'delivered',  label: ' Dikirim' },
+  { value: 'completed',  label: ' Selesai' },
+  { value: 'cancelled',  label: ' Dibatalkan' },
 ]
 
 const statusMap = {

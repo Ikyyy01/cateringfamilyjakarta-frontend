@@ -6,7 +6,7 @@
         <h1 class="text-2xl font-extrabold text-gray-800">Kelola Kategori</h1>
       </div>
       <button @click="openModal()" class="inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-orange-500 text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow hover:-translate-y-0.5 transition">
-        ➕ Tambah Kategori
+        Tambah Kategori
       </button>
     </div>
 
@@ -32,7 +32,7 @@
         <div v-for="i in 5" :key="i" class="h-12 bg-gray-100 rounded-xl animate-pulse"></div>
       </div>
       <div v-else-if="categories.length === 0" class="text-center py-16 text-gray-300">
-        <div class="text-4xl mb-3">📂</div>
+        <div class="text-4xl mb-3"></div>
         <p class="font-semibold text-gray-400">Belum ada kategori</p>
       </div>
       <div v-else class="overflow-x-auto">
@@ -50,14 +50,14 @@
             <tr v-for="cat in categories" :key="cat.id" class="hover:bg-gray-50/50 transition-colors">
               <td class="px-5 py-3.5">
                 <div class="flex items-center gap-3">
-                  <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-red-100 to-orange-100 flex items-center justify-center text-base flex-shrink-0">🍽️</div>
+                  <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-red-100 to-orange-100 flex items-center justify-center text-base flex-shrink-0"></div>
                   <span class="font-bold text-gray-800">{{ cat.name }}</span>
                 </div>
               </td>
               <td class="px-5 py-3.5 text-gray-500 text-xs max-w-xs truncate">{{ cat.description || '—' }}</td>
               <td class="px-5 py-3.5">
                 <span class="inline-flex items-center gap-1 text-xs font-bold text-red-600 bg-red-50 px-2.5 py-1 rounded-full">
-                  🍱 {{ cat.menus_count ?? 0 }} menu
+                  {{ cat.menus_count ?? 0 }} menu
                 </span>
               </td>
               <td class="px-5 py-3.5">
@@ -66,10 +66,10 @@
                 </span>
               </td>
               <td class="px-5 py-3.5 text-right">
-                <button @click="openModal(cat)" class="text-xs border-2 border-gray-200 text-gray-500 px-3 py-1.5 rounded-xl font-bold hover:border-red-300 hover:text-red-500 transition mr-2">✏️ Edit</button>
+                <button @click="openModal(cat)" class="text-xs border-2 border-gray-200 text-gray-500 px-3 py-1.5 rounded-xl font-bold hover:border-red-300 hover:text-red-500 transition mr-2">Edit</button>
                 <button @click="handleDelete(cat)" :disabled="(cat.menus_count ?? 0) > 0"
                   class="text-xs border-2 border-red-100 text-red-400 px-3 py-1.5 rounded-xl font-bold hover:bg-red-50 transition disabled:opacity-30 disabled:cursor-not-allowed">
-                  🗑️ Hapus
+                  Hapus
                 </button>
               </td>
             </tr>
@@ -81,7 +81,7 @@
     <!-- Modal -->
     <div v-if="showModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4">
       <div class="bg-white rounded-3xl shadow-xl p-8 max-w-md w-full">
-        <h3 class="font-extrabold text-gray-800 text-lg mb-6">{{ editId ? '✏️ Edit Kategori' : '➕ Tambah Kategori' }}</h3>
+        <h3 class="font-extrabold text-gray-800 text-lg mb-6">{{ editId ? 'Edit Kategori' : 'Tambah Kategori' }}</h3>
         <div class="space-y-4">
           <div>
             <label class="block text-sm font-bold text-gray-700 mb-1.5">Nama Kategori <span class="text-red-500">*</span></label>
@@ -96,7 +96,7 @@
             <label for="catActive" class="text-sm font-bold text-gray-700">Kategori Aktif</label>
           </div>
           <div v-if="formError" class="bg-red-50 border border-red-200 text-red-600 text-sm rounded-xl px-4 py-3 flex items-start gap-2">
-            <span>⚠️</span><span>{{ formError }}</span>
+            <span></span><span>{{ formError }}</span>
           </div>
         </div>
         <div class="flex gap-3 mt-6">

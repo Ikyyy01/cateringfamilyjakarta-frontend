@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <div>
     <!-- HERO -->
     <section class="relative bg-white overflow-hidden flex items-center min-h-[85vh] sm:min-h-screen">
@@ -28,7 +28,7 @@
             </h1>
             <p class="text-gray-500 text-base sm:text-lg leading-relaxed mb-7">
               Nasi box berkualitas & paket aqiqah lengkap dengan cita rasa terbaik.
-              Pesan online, terima di lokasi Anda — tepat waktu, selalu!
+              Pesan online, terima di lokasi Anda ÔÇö tepat waktu, selalu!
             </p>
             <div class="flex flex-wrap gap-3">
               <RouterLink to="/menu" class="inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-orange-500 text-white px-6 sm:px-7 py-3 sm:py-3.5 rounded-full font-bold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition text-sm sm:text-base">
@@ -97,7 +97,7 @@
             <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Pilih <span class="text-red-600">Kategori</span> Favorit</h2>
             <div class="w-12 h-1 bg-gradient-to-r from-red-600 to-orange-400 rounded mt-3"></div>
           </div>
-          <RouterLink to="/menu" class="text-sm text-red-600 font-bold hover:underline hidden md:block">Semua Menu →</RouterLink>
+          <RouterLink to="/menu" class="text-sm text-red-600 font-bold hover:underline hidden md:block">Semua Menu ÔåÆ</RouterLink>
         </div>
 
         <div v-if="loadingCategories" class="grid grid-cols-3 md:grid-cols-6 gap-3">
@@ -116,7 +116,7 @@
         </div>
 
         <div class="mt-5 md:hidden text-center">
-          <RouterLink to="/menu" class="text-sm text-red-600 font-bold hover:underline">Semua Menu →</RouterLink>
+          <RouterLink to="/menu" class="text-sm text-red-600 font-bold hover:underline">Semua Menu ÔåÆ</RouterLink>
         </div>
       </div>
     </section>
@@ -130,7 +130,7 @@
             <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Menu <span class="text-red-600">Unggulan</span> Kami</h2>
             <div class="w-12 h-1 bg-gradient-to-r from-red-600 to-orange-400 rounded mt-3"></div>
           </div>
-          <RouterLink to="/menu" class="text-sm text-red-600 font-bold hover:underline hidden md:block">Lihat Semua →</RouterLink>
+          <RouterLink to="/menu" class="text-sm text-red-600 font-bold hover:underline hidden md:block">Lihat Semua ÔåÆ</RouterLink>
         </div>
 
         <div v-if="loadingMenus" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -152,7 +152,7 @@
         </div>
 
         <div class="mt-6 md:hidden text-center">
-          <RouterLink to="/menu" class="text-sm text-red-600 font-bold hover:underline">Lihat Semua Menu →</RouterLink>
+          <RouterLink to="/menu" class="text-sm text-red-600 font-bold hover:underline">Lihat Semua Menu ÔåÆ</RouterLink>
         </div>
       </div>
     </section>
@@ -187,9 +187,9 @@
             <p class="text-xs font-extrabold uppercase tracking-widest text-red-600 mb-1">Keunggulan Kami</p>
             <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-3">Kenapa Pilih <span class="text-red-600">Kami?</span></h2>
             <div class="w-12 h-1 bg-gradient-to-r from-red-600 to-orange-400 rounded mb-4"></div>
-            <p class="text-gray-400 text-sm leading-relaxed mb-6">Kami berkomitmen memberikan pengalaman catering terbaik — dari kualitas makanan hingga ketepatan pengiriman.</p>
+            <p class="text-gray-400 text-sm leading-relaxed mb-6">Kami berkomitmen memberikan pengalaman catering terbaik ÔÇö dari kualitas makanan hingga ketepatan pengiriman.</p>
             <RouterLink to="/menu" class="inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-orange-500 text-white px-6 py-3 rounded-full font-bold hover:-translate-y-0.5 transition shadow-md text-sm sm:text-base">
-              Pesan Sekarang →
+              Pesan Sekarang ÔåÆ
             </RouterLink>
           </div>
           <div class="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -221,7 +221,7 @@
         <div v-else-if="reviews.length > 0" class="grid sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6">
           <div v-for="r in reviews.slice(0,6)" :key="r.order_number || r.customer" class="bg-white rounded-2xl shadow-md p-5 sm:p-6 relative border border-gray-50">
             <div class="absolute top-4 right-5 text-4xl sm:text-5xl text-red-100 font-serif leading-none">"</div>
-            <div class="text-yellow-400 text-sm mb-3">{{ '★'.repeat(r.rating) }}{{ '☆'.repeat(5 - r.rating) }}</div>
+            <div class="text-yellow-400 text-sm mb-3">{{ 'Ôÿà'.repeat(r.rating) }}{{ 'Ôÿå'.repeat(5 - r.rating) }}</div>
             <p class="text-sm text-gray-500 leading-relaxed mb-5">{{ r.comment || 'Pelanggan puas dengan pelayanan kami.' }}</p>
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-full bg-gradient-to-br from-red-600 to-orange-400 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">{{ r.customer?.[0]?.toUpperCase() || 'A' }}</div>
@@ -235,7 +235,7 @@
         <div v-else class="grid sm:grid-cols-2 md:grid-cols-3 gap-5 sm:gap-6">
           <div v-for="t in fallbackTestimonials" :key="t.name" class="bg-white rounded-2xl shadow-md p-5 sm:p-6 relative border border-gray-50">
             <div class="absolute top-4 right-5 text-4xl sm:text-5xl text-red-100 font-serif leading-none">"</div>
-            <div class="text-yellow-400 text-sm mb-3">★★★★★</div>
+            <div class="text-yellow-400 text-sm mb-3">ÔÿàÔÿàÔÿàÔÿàÔÿà</div>
             <p class="text-sm text-gray-500 leading-relaxed mb-5">{{ t.text }}</p>
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-full bg-gradient-to-br from-red-600 to-orange-400 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">{{ t.name[0] }}</div>

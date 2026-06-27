@@ -16,11 +16,11 @@
           @keyup.enter="handleTrack" />
         <button @click="handleTrack" :disabled="loading || !kode.trim()"
           class="bg-gradient-to-r from-red-600 to-orange-500 text-white px-6 py-3 rounded-xl font-bold shadow hover:-translate-y-0.5 transition disabled:opacity-40 disabled:transform-none">
-          {{ loading ? '...' : '🔍 Cari' }}
+          {{ loading ? '...' : ' Cari' }}
         </button>
       </div>
       <p class="text-xs text-gray-400 mt-2">ℹ️ Kode dikirimkan saat pesanan berhasil dibuat.</p>
-      <p v-if="error" class="text-red-500 text-sm mt-3 font-semibold bg-red-50 px-4 py-2 rounded-xl">⚠️ {{ error }}</p>
+      <p v-if="error" class="text-red-500 text-sm mt-3 font-semibold bg-red-50 px-4 py-2 rounded-xl">️ {{ error }}</p>
     </div>
 
     <!-- Hasil -->
@@ -85,7 +85,7 @@
                 : isStepDone(step.key)
                 ? 'bg-gradient-to-br from-red-600 to-orange-400 border-transparent text-white shadow-md'
                 : 'bg-white border-gray-200 text-gray-300']">
-              <span v-if="isStepDone(step.key)">✓</span>
+              <span v-if="isStepDone(step.key)"></span>
               <span v-else class="text-xs">{{ i + 1 }}</span>
             </div>
             <p :class="['text-xs font-bold text-center leading-tight mt-2 w-14',
@@ -98,7 +98,7 @@
 
       <!-- Cancelled -->
       <div v-else class="mx-6 my-4 bg-red-50 border border-red-200 rounded-2xl p-4 flex items-center gap-3 text-red-700 text-sm">
-        <span class="text-2xl">❌</span>
+        <span class="text-2xl"></span>
         <div>
           <p class="font-bold">Pesanan Dibatalkan</p>
           <p v-if="order.cancelled_reason" class="text-xs opacity-75 mt-0.5">{{ order.cancelled_reason }}</p>
@@ -113,18 +113,18 @@
             : order.payment.status === 'pending_verification'
             ? 'bg-yellow-50 border border-yellow-200 text-yellow-700'
             : 'bg-gray-100 border border-gray-200 text-gray-600']">
-          <span class="text-xl">💳</span>
+          <span class="text-xl"></span>
           <div>
             <span class="font-extrabold">Pembayaran: </span>{{ order.payment.status_label }}
           </div>
         </div>
         <div v-if="order.payment.status === 'unpaid' && order.status !== 'cancelled'"
           class="mt-3 bg-orange-50 border border-orange-200 rounded-2xl p-4 text-sm">
-          <p class="font-bold text-orange-700 mb-1">⚠️ Segera Selesaikan Pembayaran</p>
+          <p class="font-bold text-orange-700 mb-1">️ Segera Selesaikan Pembayaran</p>
           <p class="text-orange-600 text-xs mb-3">Pesanan akan dibatalkan otomatis jika pembayaran belum dikonfirmasi dalam 24 jam.</p>
           <RouterLink :to="`/customer/payment/${order.id}`"
             class="inline-flex items-center gap-2 bg-orange-500 text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-orange-600 transition">
-            💳 Selesaikan Pembayaran
+             Selesaikan Pembayaran
           </RouterLink>
         </div>
       </div>
@@ -133,11 +133,11 @@
       <div class="px-6 py-4 flex flex-wrap gap-3">
         <RouterLink to="/menu"
           class="flex-1 text-center border-2 border-gray-200 text-gray-500 py-2.5 rounded-xl font-semibold hover:border-red-300 hover:text-red-500 transition text-sm">
-          🍱 Lihat Menu
+           Lihat Menu
         </RouterLink>
         <button @click="order = null; kode = ''"
           class="flex-1 text-center border-2 border-gray-200 text-gray-500 py-2.5 rounded-xl font-semibold hover:border-red-300 hover:text-red-500 transition text-sm">
-          🔍 Cari Pesanan Lain
+           Cari Pesanan Lain
         </button>
       </div>
     </div>
@@ -179,11 +179,11 @@ const statusBgMap = {
   cancelled:  'bg-gradient-to-r from-red-600 to-red-500',
 }
 const statusIconMap = {
-  pending: '⏳', confirmed: '✅', processing: '👨‍🍳',
-  delivered: '🚚', completed: '🎉', cancelled: '❌',
+  pending: '', confirmed: '', processing: '‍',
+  delivered: '', completed: '', cancelled: '',
 }
 function statusBg(s)   { return statusBgMap[s]   || 'bg-gray-500' }
-function statusIcon(s) { return statusIconMap[s] || '❓' }
+function statusIcon(s) { return statusIconMap[s] || '' }
 
 async function handleTrack() {
   const trimmed = kode.value.trim().toUpperCase()

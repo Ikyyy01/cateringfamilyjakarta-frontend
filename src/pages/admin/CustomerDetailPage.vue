@@ -47,9 +47,9 @@
       <!-- Kanan: Riwayat Pesanan -->
       <div class="lg:col-span-2">
         <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
-          <div class="px-5 py-4 border-b border-gray-50 font-extrabold text-sm text-gray-800">🛍️ Riwayat Pesanan</div>
+          <div class="px-5 py-4 border-b border-gray-50 font-extrabold text-sm text-gray-800">️ Riwayat Pesanan</div>
           <div v-if="!data.orders?.data?.length" class="text-center py-12 text-gray-300">
-            <div class="text-3xl mb-2">📋</div><p class="text-sm">Belum ada pesanan</p>
+            <div class="text-3xl mb-2"></div><p class="text-sm">Belum ada pesanan</p>
           </div>
           <div v-else class="overflow-x-auto">
             <table class="w-full text-sm">

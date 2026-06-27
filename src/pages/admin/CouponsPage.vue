@@ -6,12 +6,12 @@
         <h1 class="text-2xl font-extrabold text-gray-800">Kelola Kupon</h1>
       </div>
       <button @click="openModal()" class="inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-orange-500 text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow hover:-translate-y-0.5 transition">
-        ➕ Buat Kupon
+         Buat Kupon
       </button>
     </div>
 
     <div class="bg-white rounded-2xl shadow-sm p-4 mb-5 flex gap-3">
-      <input v-model="search" @keyup.enter="fetchCoupons" type="text" placeholder="🔍 Cari kode kupon..."
+      <input v-model="search" @keyup.enter="fetchCoupons" type="text" placeholder=" Cari kode kupon..."
         class="flex-1 border-2 border-gray-100 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-red-300 transition" />
       <button @click="fetchCoupons" class="bg-red-600 text-white px-5 py-2 rounded-xl text-sm font-bold hover:bg-red-700 transition">Cari</button>
     </div>
@@ -21,7 +21,7 @@
         <div v-for="i in 5" :key="i" class="h-14 bg-gray-100 rounded-xl animate-pulse"></div>
       </div>
       <div v-else-if="coupons.length === 0" class="text-center py-16">
-        <div class="text-4xl mb-3">🎟️</div>
+        <div class="text-4xl mb-3">️</div>
         <p class="font-semibold text-gray-400">Belum ada kupon</p>
       </div>
       <div v-else class="overflow-x-auto">
@@ -59,13 +59,13 @@
               <td class="px-5 py-3.5">
                 <button @click="handleToggle(c)"
                   :class="['text-xs px-2.5 py-1 rounded-full font-bold transition', c.is_active ? 'bg-green-100 text-green-700 hover:bg-green-200' : 'bg-gray-100 text-gray-500 hover:bg-gray-200']">
-                  {{ c.is_active ? '✓ Aktif' : '✗ Nonaktif' }}
+                  {{ c.is_active ? ' Aktif' : ' Nonaktif' }}
                 </button>
               </td>
               <td class="px-5 py-3.5 text-right">
                 <div class="flex items-center justify-end gap-2">
-                  <button @click="openModal(c)" class="text-xs border-2 border-gray-200 text-gray-500 px-3 py-1.5 rounded-xl font-bold hover:border-red-300 hover:text-red-500 transition">✏️</button>
-                  <button @click="handleDelete(c)" class="text-xs border-2 border-red-100 text-red-400 px-3 py-1.5 rounded-xl font-bold hover:bg-red-50 transition">🗑️</button>
+                  <button @click="openModal(c)" class="text-xs border-2 border-gray-200 text-gray-500 px-3 py-1.5 rounded-xl font-bold hover:border-red-300 hover:text-red-500 transition">️</button>
+                  <button @click="handleDelete(c)" class="text-xs border-2 border-red-100 text-red-400 px-3 py-1.5 rounded-xl font-bold hover:bg-red-50 transition">️</button>
                 </div>
               </td>
             </tr>
@@ -84,7 +84,7 @@
     <!-- Modal -->
     <div v-if="showModal" class="fixed inset-0 bg-black/50 z-50 flex items-start justify-center px-4 py-8 overflow-y-auto">
       <div class="bg-white rounded-3xl shadow-xl p-8 max-w-lg w-full">
-        <h3 class="font-extrabold text-gray-800 text-lg mb-6">{{ editId ? '✏️ Edit Kupon' : '🎟️ Buat Kupon Baru' }}</h3>
+        <h3 class="font-extrabold text-gray-800 text-lg mb-6">{{ editId ? '️ Edit Kupon' : '️ Buat Kupon Baru' }}</h3>
         <div class="space-y-4">
           <div class="grid grid-cols-2 gap-3">
             <div class="col-span-2">
@@ -133,7 +133,7 @@
             <label for="cpnActive" class="text-sm font-bold text-gray-700">Aktifkan kupon ini</label>
           </div>
           <div v-if="formError" class="bg-red-50 border border-red-200 text-red-600 text-sm rounded-xl px-4 py-3 flex gap-2">
-            <span>⚠️</span><span>{{ formError }}</span>
+            <span>️</span><span>{{ formError }}</span>
           </div>
         </div>
         <div class="flex gap-3 mt-6">

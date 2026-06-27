@@ -48,7 +48,7 @@
 
         <button type="submit" :disabled="profileLoading"
           class="w-full bg-gradient-to-r from-red-600 to-orange-500 text-white py-3 rounded-xl font-bold shadow hover:-translate-y-0.5 transition disabled:opacity-50">
-          {{ profileLoading ? 'Menyimpan...' : '💾 Simpan Perubahan' }}
+          {{ profileLoading ? 'Menyimpan...' : ' Simpan Perubahan' }}
         </button>
       </form>
     </div>
@@ -56,7 +56,7 @@
     <!-- Ganti Password -->
     <div class="bg-white rounded-3xl shadow-md p-8 mb-6">
       <div class="flex items-center gap-3 mb-6">
-        <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center text-xl">🔑</div>
+        <div class="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center text-xl"></div>
         <div>
           <h2 class="font-extrabold text-gray-800">Ganti Password</h2>
           <p class="text-xs text-gray-400">Perbarui password akun kamu</p>
@@ -71,7 +71,7 @@
               class="w-full border-2 border-gray-200 rounded-xl px-4 py-2.5 pr-11 focus:outline-none focus:border-red-400 transition" />
             <button type="button" @click="showPw.current = !showPw.current"
               class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-sm">
-              {{ showPw.current ? '🙈' : '👁' }}
+              {{ showPw.current ? '' : '' }}
             </button>
           </div>
         </div>
@@ -82,7 +82,7 @@
               class="w-full border-2 border-gray-200 rounded-xl px-4 py-2.5 pr-11 focus:outline-none focus:border-red-400 transition" />
             <button type="button" @click="showPw.new = !showPw.new"
               class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-sm">
-              {{ showPw.new ? '🙈' : '👁' }}
+              {{ showPw.new ? '' : '' }}
             </button>
           </div>
           <p class="text-xs text-gray-400 mt-1">Minimal 8 karakter</p>
@@ -94,7 +94,7 @@
               class="w-full border-2 border-gray-200 rounded-xl px-4 py-2.5 pr-11 focus:outline-none focus:border-red-400 transition" />
             <button type="button" @click="showPw.confirm = !showPw.confirm"
               class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-sm">
-              {{ showPw.confirm ? '🙈' : '👁' }}
+              {{ showPw.confirm ? '' : '' }}
             </button>
           </div>
         </div>
@@ -108,7 +108,7 @@
 
         <button type="submit" :disabled="pwLoading"
           class="w-full bg-gradient-to-r from-orange-500 to-red-600 text-white py-3 rounded-xl font-bold shadow hover:-translate-y-0.5 transition disabled:opacity-50">
-          {{ pwLoading ? 'Menyimpan...' : '🔐 Ganti Password' }}
+          {{ pwLoading ? 'Menyimpan...' : ' Ganti Password' }}
         </button>
       </form>
     </div>
@@ -117,7 +117,7 @@
     <div class="bg-white rounded-3xl shadow-md p-8">
       <button @click="handleLogout"
         class="w-full border-2 border-gray-200 text-gray-600 py-3 rounded-xl font-bold hover:border-red-300 hover:text-red-500 transition text-sm">
-        🚪 Logout dari Akun Ini
+         Logout dari Akun Ini
       </button>
     </div>
   </div>
@@ -160,7 +160,7 @@ async function handleUpdate() {
   try {
     const res = await updateProfile(form.value)
     authStore.user = res.data.data || res.data
-    profileSuccess.value = '✅ Profil berhasil diperbarui!'
+    profileSuccess.value = ' Profil berhasil diperbarui!'
   } catch (err) {
     profileError.value = err.response?.data?.message || 'Gagal menyimpan perubahan.'
   } finally {
@@ -180,7 +180,7 @@ async function handleChangePassword() {
       authStore.token = newToken
       localStorage.setItem('token', newToken)
     }
-    pwSuccess.value = '✅ Password berhasil diperbarui!'
+    pwSuccess.value = ' Password berhasil diperbarui!'
     pwForm.value = { current_password: '', password: '', password_confirmation: '' }
   } catch (err) {
     pwError.value = err.response?.data?.message || 'Gagal mengganti password.'

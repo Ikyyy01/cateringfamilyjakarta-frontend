@@ -34,14 +34,14 @@
           </div>
           <button @click="handleConfirmReceived" :disabled="confirming"
             class="flex-shrink-0 bg-teal-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-teal-700 transition disabled:opacity-50">
-            {{ confirming ? 'Memproses...' : '✅ Sudah Diterima' }}
+            {{ confirming ? 'Memproses...' : ' Sudah Diterima' }}
           </button>
         </div>
       </div>
 
       <!-- Detail Acara -->
       <div class="bg-white rounded-3xl shadow-md p-6">
-        <h3 class="font-extrabold text-gray-700 mb-4">📅 Detail Acara</h3>
+        <h3 class="font-extrabold text-gray-700 mb-4"> Detail Acara</h3>
         <div class="grid grid-cols-2 gap-4 text-sm">
           <div>
             <p class="text-xs text-gray-400 font-semibold mb-1">Tanggal Acara</p>
@@ -64,9 +64,9 @@
 
       <!-- Item Pesanan -->
       <div class="bg-white rounded-3xl shadow-md overflow-hidden">
-        <div class="px-6 py-4 border-b font-extrabold text-gray-700">🍱 Item Pesanan</div>
+        <div class="px-6 py-4 border-b font-extrabold text-gray-700"> Item Pesanan</div>
         <div v-for="item in order.order_items" :key="item.id" class="flex items-center gap-4 px-6 py-4 border-b last:border-0">
-          <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center text-lg flex-shrink-0">🍛</div>
+          <div class="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center text-lg flex-shrink-0"></div>
           <div class="flex-1">
             <p class="font-bold text-gray-800">{{ item.menu_name }}</p>
             <p class="text-xs text-gray-400">{{ item.pax }} pax × {{ formatRupiah(item.price) }}</p>
@@ -78,7 +78,7 @@
 
       <!-- Rincian Harga -->
       <div class="bg-white rounded-3xl shadow-md p-6">
-        <h3 class="font-extrabold text-gray-700 mb-4">🧾 Rincian Harga</h3>
+        <h3 class="font-extrabold text-gray-700 mb-4"> Rincian Harga</h3>
         <div class="space-y-2 text-sm">
           <div class="flex justify-between text-gray-500"><span>Subtotal</span><span>{{ formatRupiah(order.subtotal) }}</span></div>
           <div class="flex justify-between text-gray-500"><span>Ongkos Kirim</span><span>{{ formatRupiah(order.delivery_fee) }}</span></div>
@@ -93,7 +93,7 @@
 
       <!-- Pembayaran -->
       <div class="bg-white rounded-3xl shadow-md p-6">
-        <h3 class="font-extrabold text-gray-700 mb-4">💳 Status Pembayaran</h3>
+        <h3 class="font-extrabold text-gray-700 mb-4"> Status Pembayaran</h3>
         <div v-if="order.payment">
           <span :class="['text-sm px-4 py-1.5 rounded-full font-bold', paymentClass(order.payment.status)]">
             {{ paymentLabel(order.payment.status) }}
@@ -106,7 +106,7 @@
           </div>
           <RouterLink v-if="order.payment.status === 'unpaid'" :to="`/customer/payment/${order.id}`"
             class="inline-flex items-center gap-2 mt-4 bg-gradient-to-r from-red-600 to-orange-500 text-white px-6 py-3 rounded-full font-bold shadow hover:-translate-y-0.5 transition">
-            💳 Selesaikan Pembayaran
+             Selesaikan Pembayaran
           </RouterLink>
         </div>
         <p v-else class="text-gray-400 text-sm">Belum ada data pembayaran.</p>
@@ -114,11 +114,11 @@
 
       <!-- Review — tampil kalau sudah completed dan belum review -->
       <div v-if="order.status === 'completed' && !order.review" class="bg-yellow-50 border border-yellow-200 rounded-2xl p-5">
-        <p class="font-bold text-yellow-800 mb-1">⭐ Berikan Review</p>
+        <p class="font-bold text-yellow-800 mb-1"> Berikan Review</p>
         <p class="text-xs text-yellow-700 mb-4">Bagaimana pengalaman Anda? Tinggalkan ulasan untuk membantu pelanggan lain.</p>
         <div class="flex gap-1 mb-3">
           <button v-for="s in 5" :key="s" @click="reviewForm.rating = s"
-            :class="['text-2xl transition', s <= reviewForm.rating ? 'text-yellow-400' : 'text-gray-200 hover:text-yellow-300']">★</button>
+            :class="['text-2xl transition', s <= reviewForm.rating ? 'text-yellow-400' : 'text-gray-200 hover:text-yellow-300']"></button>
         </div>
         <textarea v-model="reviewForm.comment" rows="2" placeholder="Tulis komentar Anda..."
           class="w-full border-2 border-yellow-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-yellow-400 bg-white mb-3 resize-none" />
@@ -128,10 +128,10 @@
         </button>
       </div>
       <div v-else-if="order.review" class="bg-green-50 border border-green-200 rounded-2xl p-5 flex items-center gap-3">
-        <span class="text-2xl">⭐</span>
+        <span class="text-2xl"></span>
         <div>
           <p class="font-bold text-green-800 text-sm">Review sudah dikirim</p>
-          <p class="text-xs text-green-600">{{ '★'.repeat(order.review.rating) }} — {{ order.review.comment || 'Terima kasih!' }}</p>
+          <p class="text-xs text-green-600">{{ ''.repeat(order.review.rating) }} — {{ order.review.comment || 'Terima kasih!' }}</p>
         </div>
       </div>
 
@@ -140,7 +140,7 @@
         <p class="font-bold text-red-700 mb-1">Batalkan Pesanan</p>
         <p class="text-xs text-red-600 mb-4">Pesanan hanya bisa dibatalkan selama masih berstatus Menunggu.</p>
         <button @click="showCancelModal = true" class="text-sm border-2 border-red-400 text-red-600 px-5 py-2 rounded-full font-bold hover:bg-red-100 transition">
-          ❌ Batalkan Pesanan
+           Batalkan Pesanan
         </button>
       </div>
     </div>
@@ -148,7 +148,7 @@
     <!-- Modal Batalkan -->
     <div v-if="showCancelModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4">
       <div class="bg-white rounded-3xl shadow-xl p-8 max-w-sm w-full">
-        <div class="text-3xl text-center mb-3">⚠️</div>
+        <div class="text-3xl text-center mb-3">️</div>
         <h3 class="font-extrabold text-gray-800 text-center text-lg mb-2">Batalkan Pesanan?</h3>
         <p class="text-gray-400 text-sm text-center mb-5">Pesanan yang dibatalkan tidak dapat dikembalikan.</p>
         <textarea v-model="cancelReason" rows="2" placeholder="Alasan pembatalan (opsional)"
@@ -193,7 +193,7 @@ const statusMap = {
 const paymentMap = {
   unpaid:               { cls: 'bg-gray-100 text-gray-600',    lbl: 'Belum Dibayar' },
   pending_verification: { cls: 'bg-yellow-100 text-yellow-700', lbl: 'Verifikasi Pembayaran' },
-  paid:                 { cls: 'bg-green-100 text-green-700',   lbl: 'Lunas ✓' },
+  paid:                 { cls: 'bg-green-100 text-green-700',   lbl: 'Lunas ' },
   failed:               { cls: 'bg-red-100 text-red-600',       lbl: 'Gagal' },
 }
 

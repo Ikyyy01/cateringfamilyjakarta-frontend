@@ -9,7 +9,7 @@
 
     <!-- Filter -->
     <div class="bg-white rounded-2xl shadow-sm p-4 mb-5 flex flex-wrap gap-3">
-      <input v-model="search" @keyup.enter="fetchLogs" type="text" placeholder="🔍 Cari deskripsi atau nama admin..."
+      <input v-model="search" @keyup.enter="fetchLogs" type="text" placeholder=" Cari deskripsi atau nama admin..."
         class="flex-1 min-w-[200px] border-2 border-gray-100 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-red-300 transition" />
       <select v-model="actionFilter" @change="fetchLogs" class="border-2 border-gray-100 rounded-xl px-4 py-2 text-sm focus:outline-none bg-white">
         <option value="">Semua Aksi</option>
@@ -26,7 +26,7 @@
         <div v-for="i in 8" :key="i" class="h-12 bg-gray-100 rounded-xl animate-pulse"></div>
       </div>
       <div v-else-if="logs.length === 0" class="text-center py-16">
-        <div class="text-4xl mb-3">📋</div>
+        <div class="text-4xl mb-3"></div>
         <p class="font-semibold text-gray-400">Tidak ada log aktivitas</p>
       </div>
       <div v-else class="overflow-x-auto">

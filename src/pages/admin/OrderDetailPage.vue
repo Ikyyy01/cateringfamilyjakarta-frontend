@@ -28,7 +28,7 @@
 
         <!-- Customer Info -->
         <div class="bg-white rounded-2xl shadow-sm p-6">
-          <h3 class="font-extrabold text-gray-700 mb-4">👤 Info Pelanggan</h3>
+          <h3 class="font-extrabold text-gray-700 mb-4"> Info Pelanggan</h3>
           <div class="grid grid-cols-2 gap-3 text-sm">
             <div><p class="text-xs text-gray-400 mb-1">Nama</p><p class="font-bold">{{ order.nama_pemesan_display || order.nama_pemesan || order.user?.name || 'Guest' }}</p></div>
             <div><p class="text-xs text-gray-400 mb-1">No. HP</p><p class="font-bold">{{ order.no_hp || order.user?.phone || '-' }}</p></div>
@@ -42,10 +42,10 @@
 
         <!-- Item Pesanan -->
         <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
-          <div class="px-6 py-4 border-b font-extrabold text-gray-700">🍱 Item Pesanan</div>
+          <div class="px-6 py-4 border-b font-extrabold text-gray-700"> Item Pesanan</div>
           <div v-for="item in order.order_items" :key="item.id"
             class="flex items-center gap-4 px-6 py-3 border-b last:border-0">
-            <div class="w-9 h-9 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0">🍛</div>
+            <div class="w-9 h-9 rounded-xl bg-red-50 flex items-center justify-center flex-shrink-0"></div>
             <div class="flex-1">
               <p class="font-bold text-sm text-gray-800">{{ item.menu_name }}</p>
               <p class="text-xs text-gray-400">{{ item.pax }} pax × {{ formatRupiah(item.price) }}</p>
@@ -56,7 +56,7 @@
 
         <!-- Custom Menu -->
         <div v-if="order.custom_menus?.length" class="bg-white rounded-2xl shadow-sm overflow-hidden">
-          <div class="px-6 py-4 border-b font-extrabold text-gray-700">✏️ Custom Menu</div>
+          <div class="px-6 py-4 border-b font-extrabold text-gray-700">️ Custom Menu</div>
           <div v-for="cm in order.custom_menus" :key="cm.id" class="px-6 py-4 border-b last:border-0">
             <div class="flex justify-between items-start">
               <div>
@@ -89,7 +89,7 @@
       <div class="space-y-5">
         <!-- Update Status -->
         <div class="bg-white rounded-2xl shadow-sm p-6">
-          <h3 class="font-extrabold text-gray-700 mb-4">🔄 Update Status</h3>
+          <h3 class="font-extrabold text-gray-700 mb-4"> Update Status</h3>
           <select v-model="newStatus"
             class="w-full border-2 border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-red-400 transition bg-white mb-3">
             <option value="pending">Menunggu</option>
@@ -113,7 +113,7 @@
 
         <!-- Info Pembayaran -->
         <div class="bg-white rounded-2xl shadow-sm p-6">
-          <h3 class="font-extrabold text-gray-700 mb-4">💳 Pembayaran</h3>
+          <h3 class="font-extrabold text-gray-700 mb-4"> Pembayaran</h3>
           <div v-if="order.payment">
             <span :class="['text-xs px-3 py-1.5 rounded-full font-bold', paymentClass(order.payment.status)]">
               {{ paymentLabel(order.payment.status) }}
@@ -126,11 +126,11 @@
             <div v-if="order.payment.status === 'pending_verification'" class="mt-4 flex gap-2">
               <button @click="verifyPaymentFn" :disabled="verifying"
                 class="flex-1 bg-green-600 text-white py-2 rounded-xl text-xs font-bold hover:bg-green-700 transition disabled:opacity-50">
-                ✅ Verifikasi
+                 Verifikasi
               </button>
               <button @click="rejectPaymentFn" :disabled="verifying"
                 class="flex-1 bg-red-500 text-white py-2 rounded-xl text-xs font-bold hover:bg-red-600 transition disabled:opacity-50">
-                ❌ Tolak
+                 Tolak
               </button>
             </div>
           </div>
@@ -139,7 +139,7 @@
 
         <!-- Rincian Harga -->
         <div class="bg-white rounded-2xl shadow-sm p-6">
-          <h3 class="font-extrabold text-gray-700 mb-4">🧾 Rincian Harga</h3>
+          <h3 class="font-extrabold text-gray-700 mb-4"> Rincian Harga</h3>
           <div class="space-y-2 text-sm">
             <div class="flex justify-between text-gray-500"><span>Subtotal</span><span>{{ formatRupiah(order.subtotal) }}</span></div>
             <div class="flex justify-between text-gray-500"><span>Ongkos Kirim</span><span>{{ formatRupiah(order.delivery_fee) }}</span></div>

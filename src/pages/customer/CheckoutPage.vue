@@ -9,18 +9,18 @@
     <!-- Keranjang kosong -->
     <div v-if="cartStore.items.length === 0"
       class="bg-white rounded-3xl shadow-md text-center py-14 px-6 max-w-md mx-auto">
-      <div class="text-6xl sm:text-7xl opacity-40 mb-4">🛒</div>
+      <div class="text-6xl sm:text-7xl opacity-40 mb-4"></div>
       <h5 class="text-xl font-extrabold text-gray-700 mb-2">Keranjang masih kosong</h5>
       <RouterLink to="/menu"
         class="inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-orange-500 text-white px-7 py-3 rounded-full font-bold shadow hover:-translate-y-0.5 transition">
-        🍱 Lihat Menu
+         Lihat Menu
       </RouterLink>
     </div>
 
     <div v-else>
       <!-- Validasi min pax warning -->
       <div v-if="minPaxErrors.length > 0" class="bg-red-50 border border-red-200 rounded-2xl p-4 mb-5">
-        <p class="font-bold text-red-700 mb-2 text-sm">⚠️ Perhatian Minimum Pesanan</p>
+        <p class="font-bold text-red-700 mb-2 text-sm">️ Perhatian Minimum Pesanan</p>
         <ul class="space-y-1">
           <li v-for="e in minPaxErrors" :key="e" class="text-sm text-red-600 flex gap-2">
             <span>•</span><span>{{ e }}</span>
@@ -30,7 +30,7 @@
 
       <!-- Peringatan harga berubah -->
       <div v-if="priceChangedItems.length > 0" class="bg-yellow-50 border border-yellow-200 rounded-2xl p-4 mb-5">
-        <p class="font-bold text-yellow-700 mb-2 text-sm">⚠️ Harga Menu Berubah</p>
+        <p class="font-bold text-yellow-700 mb-2 text-sm">️ Harga Menu Berubah</p>
         <p class="text-sm text-yellow-600 mb-2">Harga beberapa menu telah diperbarui sejak kamu menambahkan ke keranjang:</p>
         <ul class="space-y-1">
           <li v-for="item in priceChangedItems" :key="item.id" class="text-sm text-yellow-700 flex gap-2">
@@ -81,7 +81,7 @@
                 <label class="block text-sm font-bold text-gray-700 mb-1.5">Tanggal Acara <span class="text-red-500">*</span></label>
                 <input v-model="form.event_date" type="date" required :min="minDate"
                   class="w-full border-2 border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-red-400 transition text-sm" />
-                <p class="text-xs text-gray-400 mt-1.5">⚠️ Pemesanan minimal H-2 sebelum acara</p>
+                <p class="text-xs text-gray-400 mt-1.5">️ Pemesanan minimal H-2 sebelum acara</p>
               </div>
               <div>
                 <label class="block text-sm font-bold text-gray-700 mb-1.5">Wilayah Jakarta <span class="text-red-500">*</span></label>
@@ -90,7 +90,7 @@
                   <option value="">— Pilih wilayah —</option>
                   <option v-for="k in kotaList" :key="k" :value="k">{{ k }}</option>
                 </select>
-                <p class="text-xs text-gray-400 mt-1.5">📍 Hanya melayani wilayah DKI Jakarta</p>
+                <p class="text-xs text-gray-400 mt-1.5"> Hanya melayani wilayah DKI Jakarta</p>
               </div>
               <div class="sm:col-span-2">
                 <label class="block text-sm font-bold text-gray-700 mb-1.5">Alamat Lengkap <span class="text-red-500">*</span></label>
@@ -131,7 +131,7 @@
               </button>
             </div>
             <div class="p-4 sm:p-6">
-              <p class="text-sm text-gray-400 mb-4">💡 Ada permintaan menu khusus? Admin akan menghubungi via WhatsApp untuk konfirmasi harga.</p>
+              <p class="text-sm text-gray-400 mb-4"> Ada permintaan menu khusus? Admin akan menghubungi via WhatsApp untuk konfirmasi harga.</p>
               <div v-if="customMenus.length === 0" class="text-center py-4 text-gray-400 text-sm">Belum ada custom menu.</div>
               <div v-for="(cm, i) in customMenus" :key="i" class="rounded-2xl p-4 mb-3 border border-red-100 bg-red-50/50">
                 <div class="flex justify-between items-center mb-3">
@@ -155,7 +155,7 @@
         <!-- Kanan - Ringkasan -->
         <div>
           <div class="bg-white rounded-3xl shadow-md p-5 sm:p-6 lg:sticky lg:top-24">
-            <h2 class="font-extrabold text-gray-800 mb-4 text-base">🧾 Ringkasan Pesanan</h2>
+            <h2 class="font-extrabold text-gray-800 mb-4 text-base"> Ringkasan Pesanan</h2>
 
             <div v-for="item in cartStore.items" :key="item.id" class="flex justify-between text-sm text-gray-500 mb-2">
               <span class="truncate mr-2 max-w-[140px]">{{ item.name }} ×{{ item.qty }}</span>
@@ -171,7 +171,7 @@
               </div>
               <div class="flex justify-between text-gray-500">
                 <span>Ongkos Kirim</span>
-                <span class="font-semibold">{{ deliveryFee === 0 ? 'Gratis 🎉' : formatRupiah(deliveryFee) }}</span>
+                <span class="font-semibold">{{ deliveryFee === 0 ? 'Gratis ' : formatRupiah(deliveryFee) }}</span>
               </div>
               <div class="flex justify-between text-gray-500">
                 <span>Biaya Layanan</span>
@@ -185,7 +185,7 @@
 
             <!-- Input Kupon -->
             <div class="mb-4">
-              <label class="block text-xs font-bold text-gray-500 mb-1.5 uppercase tracking-wider">🎟 Kode Kupon</label>
+              <label class="block text-xs font-bold text-gray-500 mb-1.5 uppercase tracking-wider"> Kode Kupon</label>
               <div class="flex gap-2">
                 <input v-model="couponCode" type="text" placeholder="Masukkan kode kupon"
                   :disabled="!!appliedCoupon"
@@ -196,12 +196,12 @@
                 </button>
                 <button v-else type="button" @click="removeCoupon"
                   class="px-3 sm:px-4 py-2 bg-gray-200 text-gray-600 text-sm font-bold rounded-xl hover:bg-gray-300 transition flex-shrink-0">
-                  ✕
+                  
                 </button>
               </div>
               <p v-if="couponError" class="text-xs text-red-500 mt-1">{{ couponError }}</p>
               <p v-if="appliedCoupon" class="text-xs text-green-600 mt-1 font-semibold">
-                ✅ {{ appliedCoupon.description || appliedCoupon.code }} — hemat {{ formatRupiah(couponDiscount) }}
+                 {{ appliedCoupon.description || appliedCoupon.code }} — hemat {{ formatRupiah(couponDiscount) }}
               </p>
             </div>
 
@@ -223,7 +223,7 @@
                   <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"/>
                 </svg>Memproses...
               </span>
-              <span v-else>🛍️ Buat Pesanan</span>
+              <span v-else>️ Buat Pesanan</span>
             </button>
 
             <RouterLink to="/customer/cart"
@@ -366,7 +366,12 @@ function removeCoupon() {
 onMounted(async () => {
   try {
     const res = await getPriceConfig()
-    priceConfig.value = res.data.data
+    const data = res.data.data
+    priceConfig.value = {
+      service_fee:          Number(data.service_fee) || 0,
+      delivery_fee_per_km:  Number(data.delivery_fee_per_km) || 0,
+      free_delivery_radius: Number(data.free_delivery_radius) || 0,
+    }
   } catch {}
 
   await validateCartPrices()

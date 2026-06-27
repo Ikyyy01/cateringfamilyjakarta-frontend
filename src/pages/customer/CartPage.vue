@@ -8,12 +8,12 @@
     <!-- Kosong -->
     <div v-if="cartStore.items.length === 0"
       class="bg-white rounded-3xl shadow-md text-center py-14 px-6 max-w-md mx-auto">
-      <div class="text-6xl sm:text-7xl opacity-40 mb-4">🛒</div>
+      <div class="text-6xl sm:text-7xl opacity-40 mb-4"></div>
       <h5 class="text-xl font-extrabold text-gray-700 mb-2">Keranjang masih kosong</h5>
       <p class="text-gray-400 text-sm mb-6">Tambahkan menu favorit kamu dulu ya!</p>
       <RouterLink to="/menu"
         class="inline-flex items-center gap-2 bg-gradient-to-r from-red-600 to-orange-500 text-white px-7 py-3 rounded-full font-bold shadow hover:-translate-y-0.5 transition">
-        🍱 Lihat Menu
+         Lihat Menu
       </RouterLink>
     </div>
 
@@ -24,14 +24,14 @@
           <!-- Header -->
           <div class="flex items-center justify-between px-4 sm:px-6 py-4 border-b">
             <div class="flex items-center gap-2 font-bold text-gray-700 text-sm sm:text-base">
-              🛍️ Item Pesanan
+              ️ Item Pesanan
               <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full">
                 {{ cartStore.items.length }}
               </span>
             </div>
             <button @click="cartStore.clearCart()"
               class="text-xs sm:text-sm text-red-500 border border-red-200 rounded-full px-3 sm:px-4 py-1.5 hover:bg-red-50 font-semibold">
-              🗑 Kosongkan
+               Kosongkan
             </button>
           </div>
 
@@ -42,7 +42,7 @@
             <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-red-50 to-orange-50 flex items-center justify-center text-2xl flex-shrink-0 overflow-hidden">
               <img v-if="item.image" :src="storageUrl(item.image)"
                 class="w-full h-full rounded-2xl object-cover" />
-              <span v-else>🍛</span>
+              <span v-else></span>
             </div>
 
             <!-- Info -->
@@ -86,7 +86,7 @@
       <div>
         <div class="bg-white rounded-3xl shadow-md p-5 sm:p-6 lg:sticky lg:top-24">
           <h2 class="font-extrabold text-gray-800 mb-4 flex items-center gap-2 text-base">
-            🧾 Ringkasan Pesanan
+             Ringkasan Pesanan
           </h2>
 
           <div v-for="item in cartStore.items" :key="item.id"
