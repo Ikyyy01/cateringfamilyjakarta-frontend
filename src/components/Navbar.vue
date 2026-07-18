@@ -105,22 +105,22 @@
           <RouterLink to="/" @click="mobileMenuOpen = false"
             class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-red-600 transition"
             active-class="bg-red-50 text-red-600">
-            🏠 Beranda
+            Beranda
           </RouterLink>
           <RouterLink to="/menu" @click="mobileMenuOpen = false"
             class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-red-600 transition"
             active-class="bg-red-50 text-red-600">
-            🍱 Menu
+            Menu
           </RouterLink>
           <RouterLink to="/track" @click="mobileMenuOpen = false"
             class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-red-600 transition"
             active-class="bg-red-50 text-red-600">
-            🔍 Lacak Pesanan
+            Lacak Pesanan
           </RouterLink>
           <RouterLink to="/tentang-kami" @click="mobileMenuOpen = false"
             class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-red-600 transition"
             active-class="bg-red-50 text-red-600">
-            ℹ️ Tentang Kami
+            Tentang Kami
           </RouterLink>
         </div>
 
@@ -130,7 +130,7 @@
           <template v-if="authStore.isLoggedIn && authStore.isAdmin">
             <RouterLink to="/admin/dashboard" @click="mobileMenuOpen = false"
               class="flex items-center justify-center gap-2 w-full bg-red-600 text-white py-2.5 rounded-xl font-semibold text-sm mb-2 hover:bg-red-700 transition">
-              🖥️ Admin Panel
+              Admin Panel
             </RouterLink>
             <button @click="doLogout"
               class="flex items-center justify-center gap-2 w-full border-2 border-gray-200 text-gray-500 py-2.5 rounded-xl font-semibold text-sm hover:border-red-300 hover:text-red-500 transition">
@@ -151,15 +151,15 @@
             </div>
             <RouterLink to="/customer/orders" @click="mobileMenuOpen = false"
               class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
-              📋 Pesanan Saya
+              Pesanan Saya
             </RouterLink>
             <RouterLink to="/customer/profile" @click="mobileMenuOpen = false"
               class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
-              👤 Profil Saya
+              Profil Saya
             </RouterLink>
             <button @click="doLogout"
               class="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium text-red-500 hover:bg-red-50 transition mt-1">
-              🚪 Logout
+              Logout
             </button>
           </template>
 
@@ -167,7 +167,7 @@
           <template v-else>
             <RouterLink to="/menu" @click="mobileMenuOpen = false"
               class="flex items-center justify-center gap-2 w-full bg-gradient-to-r from-red-600 to-orange-500 text-white py-2.5 rounded-xl font-bold text-sm shadow hover:-translate-y-0.5 transition">
-              🍱 Pesan Sekarang
+              Pesan Sekarang
             </RouterLink>
           </template>
         </div>
