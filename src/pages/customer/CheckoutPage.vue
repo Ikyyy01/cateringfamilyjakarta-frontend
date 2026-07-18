@@ -99,12 +99,17 @@
                   placeholder="Jalan, RT/RW, Kelurahan, Kecamatan…"></textarea>
               </div>
               <div>
-                <label class="block text-sm font-bold text-gray-700 mb-1.5">Jarak dari Dapur (km) <span class="text-red-500">*</span></label>
-                <input v-model.number="form.distance_km" type="number" min="0" step="0.5" required
-                  class="w-full border-2 border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-red-400 transition text-sm"
-                  placeholder="Contoh: 5" />
+                <label class="block text-sm font-bold text-gray-700 mb-1.5 flex items-center justify-between">
+                  <span>Jarak dari Dapur (km) <span class="text-red-500">*</span></span>
+                  <span v-if="calculatingDistance" class="text-xs text-red-500 animate-pulse">Menghitung...</span>
+                </label>
+                <div class="relative">
+                  <input v-model.number="form.distance_km" type="number" min="0" step="0.5" required
+                    :class="['w-full border-2 rounded-xl px-4 py-2.5 focus:outline-none focus:border-red-400 transition text-sm', calculatingDistance ? 'border-red-200 bg-red-50' : 'border-gray-200']"
+                    placeholder="Contoh: 5" />
+                </div>
                 <p class="text-xs text-gray-400 mt-1.5">
-                  ℹ️ Gratis ongkir radius {{ priceConfig.free_delivery_radius }} km.
+                  ℹ️ Otomatis dihitung berdasarkan alamat. Gratis ongkir radius {{ priceConfig.free_delivery_radius }} km.
                   Setelahnya {{ formatRupiah(priceConfig.delivery_fee_per_km) }}/km.
                 </p>
               </div>
@@ -238,16 +243,19 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCartStore } from '@/stores/cart'
 import { createOrder } from '@/api/orders'
-import { getPriceConfig, checkCoupon, getMenus } from '@/api/menus'
+import { getPriceConfig, checkCoupon, getMenus, calculateDistance } from '@/api/menus'
 
 const cartStore = useCartStore()
 const router = useRouter()
 
 const kotaList = ['Jakarta Utara', 'Jakarta Timur', 'Jakarta Pusat', 'Jakarta Selatan', 'Jakarta Barat']
+
+const calculatingDistance = ref(false)
+let distanceTimer = null
 
 const priceConfig = ref({
   service_fee:          5000,
@@ -362,6 +370,24 @@ function removeCoupon() {
   couponCode.value     = ''
   couponError.value    = ''
 }
+
+watch(() => [form.value.event_address, form.value.event_city], () => {
+  if (!form.value.event_address || !form.value.event_city) return
+  if (distanceTimer) clearTimeout(distanceTimer)
+  distanceTimer = setTimeout(async () => {
+    calculatingDistance.value = true
+    try {
+      const res = await calculateDistance(form.value.event_address, form.value.event_city)
+      if (res.data?.success && res.data?.data?.distance_km !== undefined) {
+        form.value.distance_km = res.data.data.distance_km
+      }
+    } catch (e) {
+      console.error('Gagal menghitung jarak otomatis', e)
+    } finally {
+      calculatingDistance.value = false
+    }
+  }, 1000)
+})
 
 onMounted(async () => {
   try {
