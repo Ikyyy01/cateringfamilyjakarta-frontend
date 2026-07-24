@@ -3,11 +3,7 @@
     <div class="max-w-6xl mx-auto px-4 h-[60px] flex items-center justify-between">
       <!-- Logo -->
       <RouterLink to="/" class="flex items-center gap-2.5 flex-shrink-0">
-        <div class="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center flex-shrink-0">
-          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
-          </svg>
-        </div>
+        <img src="/logo.png" alt="CF Logo" class="w-10 h-10 object-contain flex-shrink-0">
         <span class="font-bold text-gray-900 text-[15px]">Catering Family</span>
       </RouterLink>
 

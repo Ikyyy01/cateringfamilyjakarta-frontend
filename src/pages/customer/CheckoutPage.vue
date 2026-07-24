@@ -97,21 +97,31 @@
                 <textarea v-model="form.event_address" rows="3" required
                   class="w-full border-2 border-gray-200 rounded-xl px-4 py-2.5 focus:outline-none focus:border-red-400 transition resize-none text-sm"
                   placeholder="Jalan, RT/RW, Kelurahan, Kecamatan…"></textarea>
-              </div>
-              <div>
-                <label class="block text-sm font-bold text-gray-700 mb-1.5 flex items-center justify-between">
-                  <span>Jarak dari Dapur (km) <span class="text-red-500">*</span></span>
-                  <span v-if="calculatingDistance" class="text-xs text-red-500 animate-pulse">Menghitung...</span>
-                </label>
-                <div class="relative">
-                  <input v-model.number="form.distance_km" type="number" min="0" step="0.5" required
-                    :class="['w-full border-2 rounded-xl px-4 py-2.5 focus:outline-none focus:border-red-400 transition text-sm', calculatingDistance ? 'border-red-200 bg-red-50' : 'border-gray-200']"
-                    placeholder="Contoh: 5" />
+                <div v-if="addressSuggestions.length > 0" class="mt-2 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+                  <button
+                    v-for="suggestion in addressSuggestions"
+                    :key="`${suggestion.latitude}-${suggestion.longitude}-${suggestion.address}`"
+                    type="button"
+                    @click="selectAddressSuggestion(suggestion)"
+                    class="block w-full border-b border-gray-100 px-4 py-3 text-left text-sm text-gray-600 transition hover:bg-red-50 last:border-b-0"
+                  >
+                    {{ suggestion.label }}
+                  </button>
                 </div>
-                <p class="text-xs text-gray-400 mt-1.5">
-                  ℹ️ Otomatis dihitung berdasarkan alamat. Gratis ongkir radius {{ priceConfig.free_delivery_radius }} km.
-                  Setelahnya {{ formatRupiah(priceConfig.delivery_fee_per_km) }}/km.
-                </p>
+              </div>
+              <div class="sm:col-span-2">
+                <div class="rounded-2xl border border-gray-200 bg-gray-50 px-4 py-3">
+                  <div class="flex items-center justify-between gap-3">
+                    <p class="text-sm font-bold text-gray-700">Ongkir otomatis dari alamat</p>
+                    <span v-if="calculatingDistance" class="text-xs text-red-500 animate-pulse">Menghitung...</span>
+                  </div>
+                  <p class="text-xs text-gray-500 mt-1.5">
+                    Gratis ongkir radius {{ priceConfig.free_delivery_radius }} km, setelahnya {{ formatRupiah(priceConfig.delivery_fee_per_km) }}/km.
+                  </p>
+                  <p v-if="form.distance_km" class="mt-2 text-xs font-semibold text-gray-700">
+                    Jarak terhitung: {{ form.distance_km }} km
+                  </p>
+                </div>
               </div>
               <div>
                 <label class="block text-sm font-bold text-gray-700 mb-1.5">Catatan Tambahan</label>
@@ -247,7 +257,7 @@ import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCartStore } from '@/stores/cart'
 import { createOrder } from '@/api/orders'
-import { getPriceConfig, checkCoupon, getMenus, calculateDistance } from '@/api/menus'
+import { getPriceConfig, checkCoupon, getMenus, calculateDistance, getAddressSuggestions } from '@/api/menus'
 
 const cartStore = useCartStore()
 const router = useRouter()
@@ -255,7 +265,10 @@ const router = useRouter()
 const kotaList = ['Jakarta Utara', 'Jakarta Timur', 'Jakarta Pusat', 'Jakarta Selatan', 'Jakarta Barat']
 
 const calculatingDistance = ref(false)
+const addressSuggestions = ref([])
 let distanceTimer = null
+let suggestionTimer = null
+let selectingSuggestion = false
 
 const priceConfig = ref({
   service_fee:          5000,
@@ -266,6 +279,7 @@ const priceConfig = ref({
 const form = ref({
   nama_pemesan: '', no_hp: '', event_date: '',
   event_city: '', event_address: '', distance_km: 0, notes: '',
+  latitude: null, longitude: null,
 })
 const customMenus   = ref([])
 const loading       = ref(false)
@@ -371,18 +385,55 @@ function removeCoupon() {
   couponError.value    = ''
 }
 
-watch(() => [form.value.event_address, form.value.event_city], () => {
-  if (!form.value.event_address || !form.value.event_city) return
+function resetSelectedAddress() {
+  form.value.latitude = null
+  form.value.longitude = null
+}
+
+function selectAddressSuggestion(suggestion) {
+  selectingSuggestion = true
+  form.value.event_address = suggestion.address
+  form.value.latitude = suggestion.latitude
+  form.value.longitude = suggestion.longitude
+  addressSuggestions.value = []
+  setTimeout(() => { selectingSuggestion = false }, 0)
+}
+
+watch(() => [form.value.event_address, form.value.event_city], ([address, city]) => {
+  if (!address || !city || address.length < 3) {
+    addressSuggestions.value = []
+    if (!selectingSuggestion) form.value.distance_km = 0
+    return
+  }
+
+  if (!selectingSuggestion) {
+    form.value.latitude = null
+    form.value.longitude = null
+  }
+
+  if (suggestionTimer) clearTimeout(suggestionTimer)
+  suggestionTimer = setTimeout(async () => {
+    try {
+      const res = await getAddressSuggestions(address, city)
+      addressSuggestions.value = res.data?.data || []
+    } catch {
+      addressSuggestions.value = []
+    }
+  }, 400)
+
   if (distanceTimer) clearTimeout(distanceTimer)
   distanceTimer = setTimeout(async () => {
     calculatingDistance.value = true
     try {
-      const res = await calculateDistance(form.value.event_address, form.value.event_city)
+      const res = await calculateDistance(form.value.event_address, form.value.event_city, form.value.latitude, form.value.longitude)
       if (res.data?.success && res.data?.data?.distance_km !== undefined) {
         form.value.distance_km = res.data.data.distance_km
+        if (res.data.data.latitude && res.data.data.longitude) {
+          form.value.latitude = res.data.data.latitude
+          form.value.longitude = res.data.data.longitude
+        }
       }
-    } catch (e) {
-      console.error('Gagal menghitung jarak otomatis', e)
+    } catch {
     } finally {
       calculatingDistance.value = false
     }

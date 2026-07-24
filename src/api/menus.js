@@ -6,7 +6,8 @@ export const getMenu       = (id)     => api.get(`/menus/${id}`)
 export const getPriceConfig= ()       => api.get('/price-config')
 export const getPublicStats= ()       => api.get('/stats')
 export const checkCoupon   = (code, subtotal) => api.post('/coupons/check', { code, subtotal })
-export const calculateDistance = (address, city) => api.post('/calculate-distance', { address, city })
+export const getAddressSuggestions = (query, city) => api.get('/address-suggestions', { params: { query, city } })
+export const calculateDistance = (address, city, latitude = null, longitude = null) => api.post('/calculate-distance', { address, city, latitude, longitude })
 
 // Helper: unwrap array dari response menu (paginated atau plain)
 export function extractMenus(res) {
