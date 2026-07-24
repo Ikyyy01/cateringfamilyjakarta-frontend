@@ -3,8 +3,7 @@
     <div class="max-w-6xl mx-auto px-4 h-[60px] flex items-center justify-between">
       <!-- Logo -->
       <RouterLink to="/" class="flex items-center gap-2.5 flex-shrink-0">
-        <img v-if="showLogo" src="/logo.png" alt="CF Logo" class="w-10 h-10 object-contain flex-shrink-0" @error="showLogo = false">
-        <div v-else class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center font-bold text-sm flex-shrink-0">CF</div>
+        <img :src="logoUrl" alt="CF Logo" class="w-10 h-10 object-contain flex-shrink-0">
         <span class="font-bold text-gray-900 text-[15px]">Catering Family</span>
       </RouterLink>
 
@@ -178,6 +177,7 @@ import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useCartStore } from '@/stores/cart'
 import { useRouter } from 'vue-router'
+import logoUrl from '/logo.png?url'
 
 const authStore    = useAuthStore()
 const cartStore    = useCartStore()

@@ -5,8 +5,7 @@
         <!-- Brand -->
         <div class="sm:col-span-2">
           <div class="flex items-center gap-3 mb-4">
-            <img v-if="showLogo" src="/logo.png" alt="CF Logo" class="w-12 h-12 object-contain flex-shrink-0" @error="showLogo = false">
-            <div v-else class="w-12 h-12 rounded-2xl bg-red-600 text-white flex items-center justify-center font-bold text-base flex-shrink-0">CF</div>
+            <img :src="logoUrl" alt="CF Logo" class="w-12 h-12 object-contain flex-shrink-0">
             <div>
               <div class="text-white font-bold text-base">Catering Family Jakarta</div>
               <div class="text-xs text-gray-500">Catering Jakarta Terpercaya</div>
@@ -81,7 +80,5 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-
-const showLogo = ref(true)
+import logoUrl from '/logo.png?url'
 </script>
