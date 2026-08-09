@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="flex items-center justify-between mb-6">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
       <div>
         <p class="text-xs text-gray-400 font-semibold mb-0.5">Panel Admin › Pelanggan</p>
         <h1 class="text-2xl font-extrabold text-gray-800">Data Pelanggan</h1>
@@ -8,9 +8,9 @@
     </div>
 
     <!-- Filter -->
-    <div class="bg-white rounded-2xl shadow-sm p-4 mb-5 flex gap-3">
-      <input v-model="search" @keyup.enter="fetchCustomers" type="text" placeholder=" Cari nama, email, HP..."
-        class="flex-1 border-2 border-gray-100 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-red-300 transition" />
+    <div class="bg-white rounded-2xl shadow-sm p-4 mb-5 flex flex-col sm:flex-row gap-3">
+      <input v-model="search" @keyup.enter="fetchCustomers" type="text" placeholder=" Cari nama, HP..."
+        class="flex-1 min-w-0 border-2 border-gray-100 rounded-xl px-4 py-2 text-sm focus:outline-none focus:border-red-300 transition" />
       <button @click="fetchCustomers" class="bg-red-600 text-white px-5 py-2 rounded-xl text-sm font-bold hover:bg-red-700 transition">Cari</button>
     </div>
 
@@ -24,7 +24,7 @@
         <p class="font-semibold text-gray-400">Tidak ada pelanggan ditemukan</p>
       </div>
       <div v-else class="overflow-x-auto">
-        <table class="w-full text-sm">
+        <table class="w-full min-w-[760px] text-sm">
           <thead class="bg-gray-50 border-b border-gray-100">
             <tr>
               <th class="px-5 py-3 text-left text-xs font-black uppercase tracking-wider text-gray-400">Pelanggan</th>
@@ -35,30 +35,30 @@
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-50">
-            <tr v-for="c in customers" :key="c.id" class="hover:bg-gray-50/50 transition-colors">
+            <tr v-for="c in customers" :key="customerKey(c)" class="hover:bg-gray-50/50 transition-colors">
               <td class="px-5 py-3.5">
                 <div class="flex items-center gap-3">
                   <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-red-500 to-orange-400 flex items-center justify-center text-white font-black text-sm flex-shrink-0">
-                    {{ c.name[0].toUpperCase() }}
+                    {{ customerInitial(c) }}
                   </div>
-                  <div>
-                    <p class="font-bold text-gray-800">{{ c.name }}</p>
-                    <p class="text-xs text-gray-400">ID #{{ c.id }}</p>
+                  <div class="min-w-0">
+                    <p class="font-bold text-gray-800 truncate">{{ customerName(c) }}</p>
+                    <p class="text-xs text-gray-400">{{ c.user_id ? `User #${c.user_id}` : 'Guest' }}</p>
                   </div>
                 </div>
               </td>
               <td class="px-5 py-3.5">
-                <p class="text-sm text-gray-700">{{ c.email }}</p>
-                <p class="text-xs text-gray-400">{{ c.phone || '—' }}</p>
+                <p class="text-sm text-gray-700">{{ c.no_hp || '—' }}</p>
+                <p class="text-xs text-gray-400 truncate">{{ c.user_id ? 'Terdaftar' : 'Pesanan tamu' }}</p>
               </td>
               <td class="px-5 py-3.5">
                 <span class="text-sm font-bold text-red-600">{{ c.orders_count ?? 0 }} pesanan</span>
               </td>
-              <td class="px-5 py-3.5 text-xs text-gray-400">{{ formatDate(c.created_at) }}</td>
+              <td class="px-5 py-3.5 text-xs text-gray-400">{{ formatLatestOrder(c.latest_order_at) }}</td>
               <td class="px-5 py-3.5 text-right flex items-center justify-end gap-2">
-                <RouterLink :to="`/admin/customers/${c.id}`" class="text-xs border-2 border-gray-200 text-gray-500 px-3 py-1.5 rounded-xl font-bold hover:border-red-300 hover:text-red-500 transition">Detail →</RouterLink>
-                <button @click="handleDelete(c)" :disabled="(c.orders_count ?? 0) > 0"
-                  class="text-xs border-2 border-red-100 text-red-400 px-3 py-1.5 rounded-xl font-bold hover:bg-red-50 transition disabled:opacity-30 disabled:cursor-not-allowed">️</button>
+                <RouterLink :to="customerDetailLink(c)" class="text-xs border-2 border-gray-200 text-gray-500 px-3 py-1.5 rounded-xl font-bold hover:border-red-300 hover:text-red-500 transition">Detail →</RouterLink>
+                <button @click="handleDelete(c)" :disabled="!canDelete(c)"
+                  class="text-xs border-2 border-red-100 text-red-400 px-3 py-1.5 rounded-xl font-bold hover:bg-red-50 transition disabled:opacity-30 disabled:cursor-not-allowed">Hapus</button>
               </td>
             </tr>
           </tbody>
@@ -89,6 +89,37 @@ const meta      = ref({ current_page: 1, last_page: 1, total: 0 })
 
 function formatDate(d) {
   return new Date(d).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' })
+}
+
+function formatLatestOrder(d) {
+  return d ? formatDate(d) : '—'
+}
+
+function customerName(c) {
+  return c.nama_pemesan || c.name || 'Guest'
+}
+
+function customerInitial(c) {
+  return customerName(c)[0]?.toUpperCase() || 'G'
+}
+
+function customerKey(c) {
+  return c.id ?? `${c.user_id ?? 'guest'}-${c.no_hp ?? c.nama_pemesan ?? 'unknown'}`
+}
+
+function customerDetailLink(c) {
+  if (c.user_id) return `/admin/customers/${c.user_id}`
+  const params = new URLSearchParams({
+    nama_pemesan: c.nama_pemesan || '',
+    no_hp: c.no_hp || '',
+    orders_count: String(c.orders_count ?? 0),
+    latest_order_at: c.latest_order_at || '',
+  })
+  return `/admin/customers/guest?${params.toString()}`
+}
+
+function canDelete(c) {
+  return (c.orders_count ?? 0) === 0
 }
 
 async function fetchCustomers() {

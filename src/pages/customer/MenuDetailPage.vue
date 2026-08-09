@@ -124,7 +124,7 @@ async function load() {
 }
 
 function addToCart() {
-  for (let i = 0; i < qty.value; i++) cartStore.addItem(menu.value)
+  cartStore.addItem(menu.value, qty.value)
   added.value = true
   setTimeout(() => (added.value = false), 2500)
 }

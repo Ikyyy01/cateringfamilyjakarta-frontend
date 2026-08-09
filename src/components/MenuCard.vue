@@ -57,7 +57,8 @@ function formatRupiah(val) {
 }
 
 function handleAddToCart() {
-  cartStore.addItem(props.menu)
+  const initialQty = props.menu.min_pax || 20
+  cartStore.addItem(props.menu, initialQty)
   showToast.value = true
   setTimeout(() => { showToast.value = false }, 2200)
 }

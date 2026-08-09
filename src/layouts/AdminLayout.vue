@@ -82,7 +82,7 @@
       <!-- Topbar -->
       <header class="bg-white border-b border-gray-200/80 px-4 sm:px-5 flex items-center justify-between h-[60px] sticky top-0 z-20 flex-shrink-0">
         <div class="flex items-center gap-3">
-          <button @click="mobileSidebarOpen = !mobileSidebarOpen; sidebarOpen = true"
+          <button @click.stop="mobileSidebarOpen = !mobileSidebarOpen; sidebarOpen = true"
             class="w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center text-gray-400 hover:border-gray-300 hover:text-gray-600 hover:bg-gray-50 transition-all md:hidden">
             <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
               <rect width="14" height="1.5" rx="0.75" fill="currentColor"/>
