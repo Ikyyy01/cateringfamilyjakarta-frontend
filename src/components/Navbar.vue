@@ -9,10 +9,10 @@
 
       <!-- Nav links desktop -->
       <div class="hidden md:flex items-center gap-1 text-sm font-medium text-gray-500">
-        <RouterLink to="/"             class="px-3 py-1.5 rounded-lg hover:bg-gray-100 hover:text-gray-800 transition" active-class="text-red-600 bg-red-50">Beranda</RouterLink>
-        <RouterLink to="/menu"         class="px-3 py-1.5 rounded-lg hover:bg-gray-100 hover:text-gray-800 transition" active-class="text-red-600 bg-red-50">Menu</RouterLink>
-        <RouterLink to="/track"        class="px-3 py-1.5 rounded-lg hover:bg-gray-100 hover:text-gray-800 transition" active-class="text-red-600 bg-red-50">Lacak Pesanan</RouterLink>
-        <RouterLink to="/tentang-kami" class="px-3 py-1.5 rounded-lg hover:bg-gray-100 hover:text-gray-800 transition" active-class="text-red-600 bg-red-50">Tentang Kami</RouterLink>
+        <RouterLink to="/" :class="navLinkClass(isHome)">Beranda</RouterLink>
+        <RouterLink to="/menu" :class="navLinkClass(isMenu)">Menu</RouterLink>
+        <RouterLink to="/track" :class="navLinkClass(isTrack)">Lacak Pesanan</RouterLink>
+        <RouterLink to="/tentang-kami" :class="navLinkClass(isAbout)">Tentang Kami</RouterLink>
       </div>
 
       <!-- Right -->
@@ -98,24 +98,16 @@
     <Transition name="slide-down">
       <div v-if="mobileMenuOpen" class="md:hidden border-t border-gray-100 bg-white shadow-lg">
         <div class="px-4 py-3 space-y-1">
-          <RouterLink to="/" @click="mobileMenuOpen = false"
-            class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-red-600 transition"
-            active-class="bg-red-50 text-red-600">
+          <RouterLink to="/" @click="mobileMenuOpen = false" :class="mobileNavLinkClass(isHome)">
             Beranda
           </RouterLink>
-          <RouterLink to="/menu" @click="mobileMenuOpen = false"
-            class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-red-600 transition"
-            active-class="bg-red-50 text-red-600">
+          <RouterLink to="/menu" @click="mobileMenuOpen = false" :class="mobileNavLinkClass(isMenu)">
             Menu
           </RouterLink>
-          <RouterLink to="/track" @click="mobileMenuOpen = false"
-            class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-red-600 transition"
-            active-class="bg-red-50 text-red-600">
+          <RouterLink to="/track" @click="mobileMenuOpen = false" :class="mobileNavLinkClass(isTrack)">
             Lacak Pesanan
           </RouterLink>
-          <RouterLink to="/tentang-kami" @click="mobileMenuOpen = false"
-            class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-700 hover:bg-red-50 hover:text-red-600 transition"
-            active-class="bg-red-50 text-red-600">
+          <RouterLink to="/tentang-kami" @click="mobileMenuOpen = false" :class="mobileNavLinkClass(isAbout)">
             Tentang Kami
           </RouterLink>
         </div>
@@ -173,17 +165,33 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useCartStore } from '@/stores/cart'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const authStore    = useAuthStore()
 const cartStore    = useCartStore()
 const router       = useRouter()
+const route        = useRoute()
 const dropdownOpen = ref(false)
 const dropdownRef  = ref(null)
 const mobileMenuOpen = ref(false)
+
+const isHome = computed(() => route.path === '/')
+const isMenu = computed(() => route.path === '/menu' || route.path.startsWith('/menu/'))
+const isTrack = computed(() => route.path === '/track')
+const isAbout = computed(() => route.path === '/tentang-kami')
+
+const navLinkClass = (active) => [
+  'px-3 py-1.5 rounded-lg transition',
+  active ? 'text-red-600 bg-red-50' : 'text-gray-500 hover:bg-gray-100 hover:text-gray-800',
+]
+
+const mobileNavLinkClass = (active) => [
+  'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition',
+  active ? 'bg-red-50 text-red-600' : 'text-gray-700 hover:bg-red-50 hover:text-red-600',
+]
 
 async function doLogout() {
   dropdownOpen.value = false

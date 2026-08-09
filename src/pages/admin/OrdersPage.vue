@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="flex items-center justify-between mb-6">
+  <div class="w-full min-w-0">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
       <div>
         <p class="text-xs text-gray-400 font-medium mb-0.5">Admin / Pesanan</p>
         <h1 class="text-xl font-bold text-gray-900">Kelola Pesanan</h1>
@@ -8,8 +8,8 @@
     </div>
 
     <!-- Filter -->
-    <div class="bg-white rounded-xl border border-gray-200/80 p-4 mb-5 flex flex-wrap gap-3">
-      <div class="flex-1 min-w-[180px] relative">
+    <div class="bg-white rounded-xl border border-gray-200/80 p-4 mb-5 flex flex-col sm:flex-row gap-3 sm:items-center">
+      <div class="flex-1 min-w-0 relative">
         <svg class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
         </svg>
@@ -45,7 +45,7 @@
         <p class="font-medium text-sm text-gray-400">Tidak ada pesanan ditemukan</p>
       </div>
       <div v-else class="overflow-x-auto">
-        <table class="w-full text-sm">
+        <table class="w-full min-w-[860px] text-sm">
           <thead class="bg-gray-50 border-b border-gray-100">
             <tr>
               <th class="px-4 py-3 text-left text-[10px] font-bold uppercase tracking-wider text-gray-400">No. Pesanan</th>
@@ -98,7 +98,7 @@
       </div>
 
       <!-- Pagination -->
-      <div v-if="pagination && pagination.last_page > 1" class="flex items-center justify-between px-5 py-3.5 border-t border-gray-100">
+      <div v-if="pagination && pagination.last_page > 1" class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 px-4 sm:px-5 py-3.5 border-t border-gray-100">
         <p class="text-xs text-gray-400">
           Halaman {{ pagination.current_page }} dari {{ pagination.last_page }}
           <span class="text-gray-300 mx-1">·</span>

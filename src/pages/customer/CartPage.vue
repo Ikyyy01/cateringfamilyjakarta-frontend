@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-4xl mx-auto px-4 py-8 sm:py-10">
+  <div class="w-full max-w-4xl mx-auto px-3 sm:px-4 py-6 sm:py-10 overflow-x-hidden">
     <div class="mb-6 sm:mb-8">
       <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Keranjang <span class="text-red-600">Pesanan</span></h1>
       <div class="w-12 h-1 bg-gradient-to-r from-red-600 to-orange-400 rounded mt-3"></div>
@@ -20,12 +20,12 @@
     <div v-else class="grid lg:grid-cols-3 gap-5 sm:gap-6">
       <!-- Daftar item -->
       <div class="lg:col-span-2">
-        <div class="bg-white rounded-3xl shadow-md overflow-hidden">
+        <div class="bg-white rounded-2xl sm:rounded-3xl shadow-md overflow-hidden">
           <!-- Header -->
-          <div class="flex items-center justify-between px-4 sm:px-6 py-4 border-b">
-            <div class="flex items-center gap-2 font-bold text-gray-700 text-sm sm:text-base">
+          <div class="flex items-center justify-between px-3 sm:px-6 py-4 border-b">
+            <div class="flex items-center gap-1.5 font-bold text-gray-700 text-sm sm:text-base">
               ️ Item Pesanan
-              <span class="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded-full">
+              <span class="bg-red-100 text-red-600 text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-full">
                 {{ cartStore.items.length }}
               </span>
             </div>
@@ -37,9 +37,9 @@
 
           <!-- Item list -->
           <div v-for="item in cartStore.items" :key="item.id"
-            class="flex items-center gap-3 sm:gap-4 px-4 sm:px-6 py-4 border-b last:border-0">
+            class="flex items-center gap-2.5 sm:gap-4 px-3 sm:px-6 py-4 border-b last:border-0">
             <!-- Thumbnail -->
-            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-red-50 to-orange-50 flex items-center justify-center text-2xl flex-shrink-0 overflow-hidden">
+            <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-red-50 to-orange-50 flex items-center justify-center text-xl sm:text-2xl flex-shrink-0 overflow-hidden">
               <img v-if="item.image" :src="storageUrl(item.image)"
                 class="w-full h-full rounded-2xl object-cover" />
               <span v-else></span>
@@ -47,19 +47,19 @@
 
             <!-- Info -->
             <div class="flex-1 min-w-0">
-              <p class="font-bold text-gray-800 text-sm truncate">{{ item.name }}</p>
-              <p class="text-red-600 text-xs sm:text-sm font-semibold">{{ formatRupiah(item.price) }}/pax</p>
+              <p class="font-bold text-gray-800 text-xs sm:text-sm truncate">{{ item.name }}</p>
+              <p class="text-red-600 text-[11px] sm:text-sm font-semibold">{{ formatRupiah(item.price) }}/pax</p>
               <!-- Mobile: subtotal below name -->
-              <p class="text-xs text-gray-400 sm:hidden mt-0.5">{{ item.qty }} pax · <span class="font-bold text-red-600">{{ formatRupiah(item.price * item.qty) }}</span></p>
+              <p class="text-[11px] text-gray-400 sm:hidden mt-0.5">{{ item.qty }} pax · <span class="font-bold text-red-600">{{ formatRupiah(item.price * item.qty) }}</span></p>
             </div>
 
             <!-- Qty control -->
-            <div class="flex items-center border border-gray-200 rounded-xl overflow-hidden flex-shrink-0">
+            <div class="flex items-center border border-gray-200 rounded-lg sm:rounded-xl overflow-hidden flex-shrink-0">
               <button @click="cartStore.updateQty(item.id, item.qty - 1)"
-                class="px-2.5 sm:px-3 py-2 text-gray-500 hover:bg-gray-100 font-bold text-sm">−</button>
-              <span class="px-2 sm:px-3 py-2 font-bold text-gray-800 min-w-[1.75rem] sm:min-w-[2rem] text-center text-sm">{{ item.qty }}</span>
+                class="px-2 sm:px-3 py-1.5 sm:py-2 text-gray-500 hover:bg-gray-100 font-bold text-xs sm:text-sm">−</button>
+              <span class="px-1.5 sm:px-3 py-1.5 sm:py-2 font-bold text-gray-800 min-w-[1.5rem] sm:min-w-[2rem] text-center text-xs sm:text-sm">{{ item.qty }}</span>
               <button @click="cartStore.updateQty(item.id, item.qty + 1)"
-                class="px-2.5 sm:px-3 py-2 text-gray-500 hover:bg-gray-100 font-bold text-sm">+</button>
+                class="px-2 sm:px-3 py-1.5 sm:py-2 text-gray-500 hover:bg-gray-100 font-bold text-xs sm:text-sm">+</button>
             </div>
 
             <!-- Subtotal (desktop only) -->
@@ -70,7 +70,7 @@
 
             <!-- Hapus -->
             <button @click="cartStore.removeItem(item.id)"
-              class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gray-100 hover:bg-red-100 hover:text-red-500 flex items-center justify-center text-gray-400 transition flex-shrink-0 text-sm">
+              class="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-100 hover:bg-red-100 hover:text-red-500 flex items-center justify-center text-gray-400 transition flex-shrink-0 text-xs sm:text-sm">
               ×
             </button>
           </div>
@@ -83,8 +83,8 @@
       </div>
 
       <!-- Ringkasan -->
-      <div>
-        <div class="bg-white rounded-3xl shadow-md p-5 sm:p-6 lg:sticky lg:top-24">
+      <div class="w-full lg:w-auto">
+        <div class="bg-white rounded-2xl sm:rounded-3xl shadow-md p-4 sm:p-5 lg:p-6 lg:sticky lg:top-24">
           <h2 class="font-extrabold text-gray-800 mb-4 flex items-center gap-2 text-base">
              Ringkasan Pesanan
           </h2>

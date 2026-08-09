@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-5xl mx-auto px-4 py-8 sm:py-10">
+  <div class="w-full max-w-5xl mx-auto px-3 sm:px-4 py-6 sm:py-10 overflow-x-hidden">
     <div class="mb-6 sm:mb-8">
       <p class="text-xs font-extrabold uppercase tracking-widest text-red-600 mb-1">Satu langkah lagi</p>
       <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Checkout <span class="text-red-600">Pesanan</span></h1>
@@ -8,7 +8,7 @@
 
     <!-- Keranjang kosong -->
     <div v-if="cartStore.items.length === 0"
-      class="bg-white rounded-3xl shadow-md text-center py-14 px-6 max-w-md mx-auto">
+      class="bg-white rounded-2xl sm:rounded-3xl shadow-md text-center py-14 px-6 max-w-md mx-auto">
       <div class="text-6xl sm:text-7xl opacity-40 mb-4"></div>
       <h5 class="text-xl font-extrabold text-gray-700 mb-2">Keranjang masih kosong</h5>
       <RouterLink to="/menu"
@@ -49,7 +49,7 @@
         <div class="lg:col-span-2 space-y-4 sm:space-y-5">
 
           <!-- Data Pemesan -->
-          <div class="bg-white rounded-3xl shadow-md overflow-hidden">
+          <div class="bg-white rounded-2xl sm:rounded-3xl shadow-md overflow-hidden">
             <div class="flex items-center gap-3 px-5 sm:px-6 py-4 border-b font-bold text-gray-700 text-sm sm:text-base">
               <span class="w-7 h-7 rounded-full bg-red-600 text-white text-xs font-extrabold flex items-center justify-center flex-shrink-0">1</span>
               Data Pemesan
@@ -71,7 +71,7 @@
           </div>
 
           <!-- Detail Acara -->
-          <div class="bg-white rounded-3xl shadow-md overflow-hidden">
+          <div class="bg-white rounded-2xl sm:rounded-3xl shadow-md overflow-hidden">
             <div class="flex items-center gap-3 px-5 sm:px-6 py-4 border-b font-bold text-gray-700 text-sm sm:text-base">
               <span class="w-7 h-7 rounded-full bg-red-600 text-white text-xs font-extrabold flex items-center justify-center flex-shrink-0">2</span>
               Detail Acara
@@ -133,7 +133,7 @@
           </div>
 
           <!-- Custom Menu -->
-          <div class="bg-white rounded-3xl shadow-md overflow-hidden">
+          <div class="bg-white rounded-2xl sm:rounded-3xl shadow-md overflow-hidden">
             <div class="flex items-center justify-between px-5 sm:px-6 py-4 border-b">
               <div class="flex items-center gap-3 font-bold text-gray-700 text-sm sm:text-base">
                 <span class="w-7 h-7 rounded-full bg-gray-300 text-white text-xs font-extrabold flex items-center justify-center flex-shrink-0">3</span>
@@ -168,8 +168,8 @@
         </div>
 
         <!-- Kanan - Ringkasan -->
-        <div>
-          <div class="bg-white rounded-3xl shadow-md p-5 sm:p-6 lg:sticky lg:top-24">
+        <div class="w-full lg:w-auto">
+          <div class="bg-white rounded-2xl sm:rounded-3xl shadow-md p-4 sm:p-5 lg:p-6 lg:sticky lg:top-24">
             <h2 class="font-extrabold text-gray-800 mb-4 text-base"> Ringkasan Pesanan</h2>
 
             <div v-for="item in cartStore.items" :key="item.id" class="flex justify-between text-sm text-gray-500 mb-2">

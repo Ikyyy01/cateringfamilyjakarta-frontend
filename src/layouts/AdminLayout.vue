@@ -1,11 +1,12 @@
 <template>
-  <div class="min-h-screen flex bg-gray-50">
+  <div class="min-h-screen flex bg-gray-50 overflow-x-hidden">
 
     <!-- Sidebar -->
     <aside :class="[
-      'flex flex-col flex-shrink-0 transition-all duration-300 sticky top-0 h-screen z-30',
+      'fixed md:sticky top-0 left-0 flex flex-col flex-shrink-0 transition-all duration-300 h-screen z-40 md:z-30',
       'bg-white border-r border-gray-200/80',
-      sidebarOpen ? 'w-60' : 'w-[60px]',
+      mobileSidebarOpen ? 'translate-x-0 w-60' : '-translate-x-full md:translate-x-0',
+      sidebarOpen ? 'md:w-60' : 'md:w-[60px]',
     ]">
       <!-- Logo -->
       <div class="flex items-center gap-3 px-3.5 h-[60px] border-b border-gray-200/80 overflow-hidden flex-shrink-0">
@@ -76,12 +77,21 @@
     </aside>
 
     <!-- Main -->
-    <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+    <div class="flex-1 flex flex-col min-w-0 overflow-hidden md:pl-0" @click="mobileSidebarOpen = false">
+      <div v-if="mobileSidebarOpen" class="fixed inset-0 bg-black/30 z-30 md:hidden" @click.stop="mobileSidebarOpen = false"></div>
       <!-- Topbar -->
-      <header class="bg-white border-b border-gray-200/80 px-5 flex items-center justify-between h-[60px] sticky top-0 z-20 flex-shrink-0">
+      <header class="bg-white border-b border-gray-200/80 px-4 sm:px-5 flex items-center justify-between h-[60px] sticky top-0 z-20 flex-shrink-0">
         <div class="flex items-center gap-3">
+          <button @click="mobileSidebarOpen = !mobileSidebarOpen; sidebarOpen = true"
+            class="w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center text-gray-400 hover:border-gray-300 hover:text-gray-600 hover:bg-gray-50 transition-all md:hidden">
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
+              <rect width="14" height="1.5" rx="0.75" fill="currentColor"/>
+              <rect y="4.25" width="9" height="1.5" rx="0.75" fill="currentColor"/>
+              <rect y="8.5" width="14" height="1.5" rx="0.75" fill="currentColor"/>
+            </svg>
+          </button>
           <button @click="sidebarOpen = !sidebarOpen"
-            class="w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center text-gray-400 hover:border-gray-300 hover:text-gray-600 hover:bg-gray-50 transition-all">
+            class="hidden md:flex w-8 h-8 rounded-lg border border-gray-200 items-center justify-center text-gray-400 hover:border-gray-300 hover:text-gray-600 hover:bg-gray-50 transition-all">
             <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
               <rect width="14" height="1.5" rx="0.75" fill="currentColor"/>
               <rect y="4.25" width="9" height="1.5" rx="0.75" fill="currentColor"/>
@@ -117,7 +127,7 @@
       </header>
 
       <!-- Content -->
-      <main class="flex-1 overflow-y-auto p-5 lg:p-6">
+      <main class="flex-1 overflow-y-auto p-4 sm:p-5 lg:p-6">
         <RouterView />
       </main>
     </div>
@@ -133,6 +143,7 @@ const authStore   = useAuthStore()
 const router      = useRouter()
 const route       = useRoute()
 const sidebarOpen = ref(true)
+const mobileSidebarOpen = ref(false)
 
 const iconDashboard = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>`
 const iconOrders   = `<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg>`

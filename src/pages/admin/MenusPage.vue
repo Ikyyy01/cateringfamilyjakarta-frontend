@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="flex items-center justify-between mb-6">
+  <div class="w-full min-w-0">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
       <div>
         <p class="text-xs text-gray-400 font-medium mb-0.5">Admin / Menu</p>
         <h1 class="text-xl font-bold text-gray-900">Kelola Menu</h1>
@@ -15,8 +15,8 @@
     </div>
 
     <!-- Filter -->
-    <div class="bg-white rounded-xl border border-gray-200/80 p-4 mb-5 flex flex-wrap gap-3">
-      <div class="flex-1 min-w-[200px] relative">
+    <div class="bg-white rounded-xl border border-gray-200/80 p-4 mb-5 flex flex-col sm:flex-row gap-3 sm:items-center">
+      <div class="flex-1 min-w-0 relative">
         <svg class="w-4 h-4 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
         </svg>
@@ -110,8 +110,8 @@
     </div>
 
     <!-- Modal Tambah/Edit -->
-    <div v-if="showModal" class="fixed inset-0 bg-black/40 z-50 flex items-start justify-center px-4 py-8 overflow-y-auto backdrop-blur-sm">
-      <div class="bg-white rounded-2xl shadow-xl p-6 max-w-lg w-full mt-4">
+    <div v-if="showModal" class="fixed inset-0 bg-black/40 z-50 flex items-start justify-center px-3 sm:px-4 py-6 sm:py-8 overflow-y-auto backdrop-blur-sm">
+      <div class="bg-white rounded-2xl shadow-xl p-4 sm:p-6 max-w-lg w-full mt-4">
         <div class="flex items-center justify-between mb-5">
           <h3 class="font-bold text-gray-900 text-base">{{ editId ? 'Edit Menu' : 'Tambah Menu Baru' }}</h3>
           <button @click="closeModal" class="w-8 h-8 rounded-lg border border-gray-200 flex items-center justify-center text-gray-400 hover:bg-gray-50 transition">
